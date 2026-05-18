@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Miyucoffee | v1.8</title>
+<title>Miyucoffee | Coffee & Pub</title>
+<link rel="icon" type="image/png" href="miyu-logo.png">
+<link rel="apple-touch-icon" href="miyu-logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Inter:wght@200;400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <style>
@@ -71,10 +73,133 @@ header {
 /* --- HERO --- */
 .hero {
   height: 100vh;
-  background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)),
+  background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.65)),
     url('https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&q=80&w=1920');
   background-size: cover;
   background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.03) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 20px;
+}
+
+.hero-eyebrow {
+  font-size: 11px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 24px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroFadeUp 1s ease 0.3s forwards;
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(52px, 9vw, 110px);
+  font-weight: 300;
+  line-height: 1.0;
+  letter-spacing: -1px;
+  color: #fff;
+  margin-bottom: 28px;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: heroFadeUp 1.2s ease 0.6s forwards;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero-subtitle {
+  font-size: 13px;
+  font-weight: 200;
+  letter-spacing: 3px;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  margin-bottom: 50px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroFadeUp 1s ease 0.9s forwards;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 36px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  transition: 0.4s;
+  opacity: 0;
+  animation: heroFadeUp 1s ease 1.2s forwards;
+  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.03);
+}
+
+.hero-cta:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.5);
+  transform: translateY(-3px);
+  gap: 18px;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  animation: heroFadeUp 1s ease 1.5s forwards;
+}
+
+.hero-scroll span {
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+
+.scroll-line {
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+  animation: scrollPulse 2s ease infinite;
+}
+
+@keyframes heroFadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.2); }
 }
 
 section { padding: 100px 10%; }
@@ -88,7 +213,9 @@ h2.section-title {
 }
 
 /* --- MOOD FILTER STYLES --- */
-.mood-container { text-align: center; margin-bottom: 50px; }
+.hamburger { display: none; }
+
+
 .mood-title { font-size: 13px; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 20px; }
 .mood-buttons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
 .mood-btn {
@@ -148,9 +275,42 @@ footer { padding: 60px 10%; text-align: center; border-top: 1px solid rgba(255,2
 
 @media (max-width: 768px) {
   .nav-links { display: none; }
-  .main-logo { width: 110px; top: 20px; left: 50%; transform: translateX(-50%); position: absolute; }
-  header { top: 80px; justify-content: center; }
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(8,8,8,0.97);
+    backdrop-filter: blur(20px);
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    z-index: 999;
+  }
+  .nav-links.open a { font-size: 16px; letter-spacing: 4px; }
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    z-index: 1100;
+    padding: 5px;
+  }
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: rgba(255,255,255,0.7);
+    transition: 0.3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .main-logo { width: 100px; top: 22px; left: 50%; transform: translateX(-50%); position: fixed; }
+  header { top: 20px; justify-content: flex-end; padding: 14px 24px; }
+  .hero-title { font-size: 48px; }
   .contact-container { flex-direction: column; }
+  section { padding: 80px 6%; }
 }
 </style>
 </head>
@@ -160,15 +320,29 @@ footer { padding: 60px 10%; text-align: center; border-top: 1px solid rgba(255,2
 
 <header>
   <nav>
-    <ul class="nav-links">
-      <li><a href="#atmosfer">Atmosfer</a></li>
-      <li><a href="#menu">Seçki</a></li>
-      <li><a href="#iletisim">İletişim</a></li>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#atmosfer" onclick="closeMenu()">Atmosfer</a></li>
+      <li><a href="#menu" onclick="closeMenu()">Seçki</a></li>
+      <li><a href="#iletisim" onclick="closeMenu()">İletişim</a></li>
     </ul>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
   </nav>
 </header>
 
-<section class="hero"></section>
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-eyebrow">İzmir · Coffee & Pub</p>
+    <h1 class="hero-title">Kahvenin<br><em>Karanlık</em> Yüzü</h1>
+    <p class="hero-subtitle">Gündüz kahve · Gece konsept</p>
+    <a href="#menu" class="hero-cta">Seçkiyi Keşfet <i class="fas fa-arrow-right" style="font-size:10px;"></i></a>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
 
 <section id="atmosfer">
   <h2 class="section-title">Miyu Atmosferi</h2>
@@ -261,7 +435,6 @@ footer { padding: 60px 10%; text-align: center; border-top: 1px solid rgba(255,2
 function filterMood(mood, button) {
   document.querySelectorAll('.mood-btn').forEach(btn => btn.classList.remove('active'));
   button.classList.add('active');
-
   const cards = document.querySelectorAll('.card');
   cards.forEach(card => {
     const cardMoods = card.getAttribute('data-mood').split(' ');
@@ -273,6 +446,22 @@ function filterMood(mood, button) {
       card.style.display = 'none';
     }
   });
+}
+
+function toggleMenu() {
+  const nav = document.getElementById('navLinks');
+  const hamburger = document.getElementById('hamburger');
+  nav.classList.toggle('open');
+  hamburger.classList.toggle('open');
+  document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+}
+
+function closeMenu() {
+  const nav = document.getElementById('navLinks');
+  const hamburger = document.getElementById('hamburger');
+  nav.classList.remove('open');
+  hamburger.classList.remove('open');
+  document.body.style.overflow = '';
 }
 </script>
 
