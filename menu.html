@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Miyu Coffee & Pub — Menü</title>
+<link rel="icon" type="image/png" href="miyu-logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #080808;
+  --card: #111111;
+  --accent: #E5E4E2;
+  --muted: #666666;
+  --border: rgba(255,255,255,0.06);
+}
+
+body {
+  background: var(--bg);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  padding-bottom: 60px;
+}
+
+/* --- HEADER --- */
+.menu-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 20px 24px 16px;
+  background: rgba(8,8,8,0.85);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+}
+
+.menu-logo {
+  height: 44px;
+  filter: invert(1);
+  margin-bottom: 6px;
+}
+
+.menu-tagline {
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* --- KATEGORİ FİLTRE --- */
+.category-bar {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 20px 24px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.category-bar::-webkit-scrollbar { display: none; }
+
+.cat-btn {
+  flex-shrink: 0;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: 9px 20px;
+  border-radius: 30px;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.3s;
+  font-family: 'Inter', sans-serif;
+  white-space: nowrap;
+}
+.cat-btn.active, .cat-btn:hover {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+}
+
+/* --- BÖLÜM BAŞLIĞI --- */
+.section-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 32px 24px 14px;
+}
+
+/* --- ÜRÜN LİSTESİ --- */
+.menu-list {
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  background: var(--card);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  transition: 0.3s;
+  cursor: default;
+  animation: fadeUp 0.4s ease forwards;
+  opacity: 0;
+}
+
+.menu-item:hover {
+  border-color: rgba(255,255,255,0.12);
+  background: #161616;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.item-emoji {
+  font-size: 28px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.04);
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.item-info { flex: 1; min-width: 0; }
+
+.item-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: #fff;
+  margin-bottom: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.item-desc {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 200;
+  line-height: 1.5;
+}
+
+.item-badge {
+  font-size: 9px;
+  letter-spacing: 1px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--muted);
+  flex-shrink: 0;
+  text-transform: uppercase;
+}
+
+.item-badge.new {
+  border-color: rgba(229,228,226,0.3);
+  color: var(--accent);
+}
+
+/* --- SEPARATOR --- */
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 24px 24px 0;
+}
+
+/* --- FOOTER --- */
+.menu-footer {
+  text-align: center;
+  padding: 48px 24px 0;
+}
+
+.menu-footer a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: 0.3s;
+}
+.menu-footer a:hover { color: #fff; }
+
+.menu-footer p {
+  margin-top: 24px;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: rgba(255,255,255,0.1);
+}
+
+/* --- HIDDEN --- */
+.menu-section { display: block; }
+.menu-section.hidden { display: none; }
+</style>
+</head>
+<body>
+
+<div class="menu-header">
+  <img src="miyu-logo.png" alt="Miyu" class="menu-logo">
+  <p class="menu-tagline">Coffee & Pub · İzmir</p>
+</div>
+
+<div class="category-bar">
+  <button class="cat-btn active" onclick="filterCat('all', this)">Tümü</button>
+  <button class="cat-btn" onclick="filterCat('kahve', this)">☕ Kahve</button>
+  <button class="cat-btn" onclick="filterCat('soguk', this)">🧊 Soğuk İçecek</button>
+  <button class="cat-btn" onclick="filterCat('kokteyl', this)">🍸 Kokteyl</button>
+  <button class="cat-btn" onclick="filterCat('sicak', this)">🍵 Sıcak İçecek</button>
+  <button class="cat-btn" onclick="filterCat('atistirmalik', this)">🫙 Atıştırmalık</button>
+</div>
+
+<!-- KAHVE -->
+<div class="menu-section" data-cat="kahve">
+  <p class="section-label">Kahve</p>
+  <div class="menu-list">
+    <div class="menu-item" style="animation-delay:0.05s">
+      <div class="item-emoji">☕</div>
+      <div class="item-info">
+        <div class="item-name">Espresso</div>
+        <div class="item-desc">Yoğun, saf, tek çekim</div>
+      </div>
+    </div>
+    <div class="menu-item" style="animation-delay:0.1s">
+      <div class="item-emoji">🥛</div>
+      <div class="item-info">
+        <div class="item-name">Flat White</div>
+        <div class="item-desc">Double ristretto, ipeksi mikro köpük</div>
+      </div>
+    </div>
+    <div class="menu-item" style="animation-delay:0.15s">
+      <div class="item-emoji">🫖</div>
+      <div class="item-info">
+        <div class="item-name">V60 Origin</div>
+        <div class="item-desc">Tek kökenli filtre, günlük değişen çekirdek</div>
+      </div>
+      <span class="item-badge new">Özel</span>
+    </div>
+    <div class="menu-item" style="animation-delay:0.2s">
+      <div class="item-emoji">☁️</div>
+      <div class="item-info">
+        <div class="item-name">Latte</div>
+        <div class="item-desc">Kremsi, dengeli, büyük boy</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SOĞUK İÇECEK -->
+<div class="menu-section" data-cat="soguk">
+  <p class="section-label">Soğuk İçecek</p>
+  <div class="menu-list">
+    <div class="menu-item" style="animation-delay:0.05s">
+      <div class="item-emoji">🧊</div>
+      <div class="item-info">
+        <div class="item-name">Cold Brew</div>
+        <div class="item-desc">12 saat soğuk demleme, kadifemsi yapı</div>
+      </div>
+    </div>
+    <div class="menu-item" style="animation-delay:0.1s">
+      <div class="item-emoji">🍵</div>
+      <div class="item-info">
+        <div class="item-name">Iced Matcha Latte</div>
+        <div class="item-desc">Törensel Japon matcha, soğuk süt</div>
+      </div>
+      <span class="item-badge new">Yeni</span>
+    </div>
+    <div class="menu-item" style="animation-delay:0.15s">
+      <div class="item-emoji">🍋</div>
+      <div class="item-info">
+        <div class="item-name">Iced Lemon Espresso</div>
+        <div class="item-desc">Espresso, limon suyu, tonik</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- KOKTEYL -->
+<div class="menu-section" data-cat="kokteyl">
+  <p class="section-label">Kokteyl</p>
+  <div class="menu-list">
+    <div class="menu-item" style="animation-delay:0.05s">
+      <div class="item-emoji">🍸</div>
+      <div class="item-info">
+        <div class="item-name">Miyu Signature</div>
+        <div class="item-desc">Tütsülenmiş aromalı, konsepte özel karışım</div>
+      </div>
+      <span class="item-badge new">Özel</span>
+    </div>
+    <div class="menu-item" style="animation-delay:0.1s">
+      <div class="item-emoji">🖤</div>
+      <div class="item-info">
+        <div class="item-name">Espresso Martini</div>
+        <div class="item-desc">Votka, kahve likörü, double espresso</div>
+      </div>
+    </div>
+    <div class="menu-item" style="animation-delay:0.15s">
+      <div class="item-emoji">🌿</div>
+      <div class="item-info">
+        <div class="item-name">Garden Spritz</div>
+        <div class="item-desc">Aperol, prosecco, taze fesleğen</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SICAK İÇECEK -->
+<div class="menu-section" data-cat="sicak">
+  <p class="section-label">Sıcak İçecek</p>
+  <div class="menu-list">
+    <div class="menu-item" style="animation-delay:0.05s">
+      <div class="item-emoji">🍵</div>
+      <div class="item-info">
+        <div class="item-name">Matcha Latte</div>
+        <div class="item-desc">Sıcak süt, törensel Japon matcha tozu</div>
+      </div>
+    </div>
+    <div class="menu-item" style="animation-delay:0.1s">
+      <div class="item-emoji">🍫</div>
+      <div class="item-info">
+        <div class="item-name">Sıcak Çikolata</div>
+        <div class="item-desc">Bitter çikolata, tam yağlı süt</div>
+      </div>
+    </div>
+    <div class="menu-item" style="animation-delay:0.15s">
+      <div class="item-emoji">🌸</div>
+      <div class="item-info">
+        <div class="item-name">Çay Seçkisi</div>
+        <div class="item-desc">Earl Grey, Chamomile, Yeşil Çay</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ATIŞTIIRMALIK -->
+<div class="menu-section" data-cat="atistirmalik">
+  <p class="section-label">Atıştırmalık</p>
+  <div class="menu-list">
+    <div class="menu-item" style="animation-delay:0.05s">
+      <div class="item-emoji">🧀</div>
+      <div class="item-info">
+        <div class="item-name">Aperatif Tabağı</div>
+        <div class="item-desc">Peynir, zeytin, kuruyemiş seçkisi</div>
+      </div>
+    </div>
+    <div class="menu-item" style="animation-delay:0.1s">
+      <div class="item-emoji">🍫</div>
+      <div class="item-info">
+        <div class="item-name">Çikolatalı Brownie</div>
+        <div class="item-desc">Sıcak servis, bitter çikolata</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="menu-footer">
+  <a href="https://miyucoffee.com" target="_blank">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+    miyucoffee.com
+  </a>
+  <p>© 2026 MIYU CONCEPT COFFEE</p>
+</div>
+
+<script>
+function filterCat(cat, btn) {
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  const sections = document.querySelectorAll('.menu-section');
+  const dividers = document.querySelectorAll('.divider');
+
+  sections.forEach(s => {
+    if (cat === 'all' || s.dataset.cat === cat) {
+      s.classList.remove('hidden');
+      s.querySelectorAll('.menu-item').forEach((item, i) => {
+        item.style.animationDelay = (i * 0.05) + 's';
+        item.style.animation = 'none';
+        item.offsetHeight;
+        item.style.animation = '';
+      });
+    } else {
+      s.classList.add('hidden');
+    }
+  });
+
+  dividers.forEach(d => d.style.display = cat === 'all' ? 'block' : 'none');
+}
+</script>
+
+</body>
+</html>

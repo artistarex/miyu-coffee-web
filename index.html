@@ -47,17 +47,25 @@ header {
   width: 90%;
   max-width: 1200px;
   padding: 18px 40px;
-  background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(25px) saturate(180%);
-  -webkit-backdrop-filter: blur(25px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(40px) saturate(200%);
+  -webkit-backdrop-filter: blur(40px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: 100px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   z-index: 1000;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08);
 }
+
+.nav-logo {
+  height: 36px;
+  filter: invert(1);
+  opacity: 0.9;
+  transition: 0.3s;
+}
+.nav-logo:hover { opacity: 1; transform: scale(1.05); }
 
 .nav-links { display: flex; list-style: none; gap: 35px; }
 .nav-links a {
@@ -69,6 +77,20 @@ header {
   transition: 0.4s;
 }
 .nav-links a:hover { color: var(--accent); }
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-instagram {
+  color: rgba(255,255,255,0.4);
+  font-size: 15px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.nav-instagram:hover { color: var(--accent); }
 
 /* --- HERO --- */
 .hero {
@@ -316,19 +338,21 @@ footer { padding: 60px 10%; text-align: center; border-top: 1px solid rgba(255,2
 </head>
 <body>
 
-<a href="#"><img src="miyu-logo.png" alt="Miyu Logo" class="main-logo"></a>
-
 <header>
+  <a href="#"><img src="miyu-logo.png" alt="Miyu Logo" class="nav-logo"></a>
   <nav>
     <ul class="nav-links" id="navLinks">
       <li><a href="#atmosfer" onclick="closeMenu()">Atmosfer</a></li>
       <li><a href="#menu" onclick="closeMenu()">Seçki</a></li>
       <li><a href="#iletisim" onclick="closeMenu()">İletişim</a></li>
     </ul>
+  </nav>
+  <div class="nav-right">
+    <a href="https://www.instagram.com/miyucoffeepub" target="_blank" class="nav-instagram"><i class="fab fa-instagram"></i></a>
     <div class="hamburger" id="hamburger" onclick="toggleMenu()">
       <span></span><span></span><span></span>
     </div>
-  </nav>
+  </div>
 </header>
 
 <section class="hero">
