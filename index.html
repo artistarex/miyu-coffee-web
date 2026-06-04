@@ -14,6 +14,13 @@
   --bg-dark: #080808;
   --card-bg: #111111;
   --text-muted: #999999;
+  /* Motion tokens */
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --dur-fast: 150ms;
+  --dur-base: 250ms;
+  --dur-slow: 400ms;
+  --dur-slower: 550ms;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -34,7 +41,7 @@ body {
   width: 140px;
   z-index: 1200;
   filter: invert(1);
-  transition: 0.3s;
+  transition: transform var(--dur-base) var(--ease-spring);
 }
 .main-logo:hover { transform: scale(1.05); }
 
@@ -63,7 +70,7 @@ header {
   height: 36px;
   filter: invert(1);
   opacity: 0.9;
-  transition: 0.3s;
+  transition: opacity var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-spring);
 }
 .nav-logo:hover { opacity: 1; transform: scale(1.05); }
 
@@ -74,9 +81,23 @@ header {
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 2px;
-  transition: 0.4s;
+  transition: color var(--dur-base) var(--ease-out);
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--dur-slow) var(--ease-spring);
 }
 .nav-links a:hover { color: var(--accent); }
+.nav-links a:hover::after { transform: scaleX(1); }
 
 .nav-right {
   display: flex;
@@ -88,7 +109,7 @@ header {
   color: rgba(255,255,255,0.4);
   font-size: 15px;
   text-decoration: none;
-  transition: 0.3s;
+  transition: color var(--dur-base) var(--ease-out);
 }
 .nav-instagram:hover { color: var(--accent); }
 
@@ -128,8 +149,8 @@ header {
   color: rgba(255,255,255,0.4);
   margin-bottom: 24px;
   opacity: 0;
-  transform: translateY(20px);
-  animation: heroFadeUp 1s ease 0.3s forwards;
+  transform: translateY(16px);
+  animation: heroFadeUp 0.8s var(--ease-spring) 0.15s forwards;
 }
 
 .hero-title {
@@ -141,8 +162,8 @@ header {
   color: #fff;
   margin-bottom: 28px;
   opacity: 0;
-  transform: translateY(30px);
-  animation: heroFadeUp 1.2s ease 0.6s forwards;
+  transform: translateY(24px);
+  animation: heroFadeUp 0.9s var(--ease-spring) 0.35s forwards;
 }
 
 .hero-title em {
@@ -158,8 +179,8 @@ header {
   text-transform: uppercase;
   margin-bottom: 50px;
   opacity: 0;
-  transform: translateY(20px);
-  animation: heroFadeUp 1s ease 0.9s forwards;
+  transform: translateY(16px);
+  animation: heroFadeUp 0.8s var(--ease-spring) 0.55s forwards;
 }
 
 .hero-cta {
@@ -174,9 +195,12 @@ header {
   font-size: 11px;
   letter-spacing: 3px;
   text-transform: uppercase;
-  transition: 0.4s;
+  transition: background var(--dur-base) var(--ease-out),
+              border-color var(--dur-base) var(--ease-out),
+              transform var(--dur-slow) var(--ease-spring),
+              gap var(--dur-slow) var(--ease-spring);
   opacity: 0;
-  animation: heroFadeUp 1s ease 1.2s forwards;
+  animation: heroFadeUp 0.8s var(--ease-spring) 0.75s forwards;
   backdrop-filter: blur(10px);
   background: rgba(255,255,255,0.03);
 }
@@ -198,7 +222,7 @@ header {
   align-items: center;
   gap: 8px;
   opacity: 0;
-  animation: heroFadeUp 1s ease 1.5s forwards;
+  animation: heroFadeUp 0.8s var(--ease-spring) 1s forwards;
 }
 
 .hero-scroll span {
@@ -224,6 +248,21 @@ header {
   50% { opacity: 1; transform: scaleY(1.2); }
 }
 
+/* --- SCROLL REVEAL --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity var(--dur-slower) var(--ease-spring),
+              transform var(--dur-slower) var(--ease-spring);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-d1 { transition-delay: 80ms; }
+.reveal-d2 { transition-delay: 160ms; }
+.reveal-d3 { transition-delay: 240ms; }
+
 section { padding: 100px 10%; }
 
 h2.section-title {
@@ -237,7 +276,6 @@ h2.section-title {
 /* --- MOOD FILTER STYLES --- */
 .hamburger { display: none; }
 
-
 .mood-title { font-size: 13px; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 20px; }
 .mood-buttons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
 .mood-btn {
@@ -249,7 +287,10 @@ h2.section-title {
   cursor: pointer;
   font-size: 12px;
   letter-spacing: 1px;
-  transition: 0.3s;
+  transition: background var(--dur-base) var(--ease-out),
+              color var(--dur-base) var(--ease-out),
+              border-color var(--dur-base) var(--ease-out),
+              box-shadow var(--dur-base) var(--ease-out);
 }
 .mood-btn:hover, .mood-btn.active {
   background: var(--accent);
@@ -265,19 +306,25 @@ h2.section-title {
   padding: 30px;
   border-radius: 24px;
   border: 1px solid rgba(255,255,255,0.03);
-  transition: transform 0.4s, opacity 0.4s, border-color 0.4s;
+  transition: transform var(--dur-slow) var(--ease-spring),
+              box-shadow var(--dur-slow) var(--ease-spring),
+              border-color var(--dur-base) var(--ease-out);
 }
-.card:hover { transform: translateY(-10px); border-color: rgba(255,255,255,0.1); }
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.45), 0 4px 12px rgba(0,0,0,0.3);
+  border-color: rgba(255,255,255,0.08);
+}
 .card img { width: 100%; height: 240px; object-fit: cover; border-radius: 16px; margin-bottom: 20px; }
 
-.card.fade-in { animation: fadeIn 0.5s ease forwards; }
+.card.fade-in { animation: fadeIn 0.45s var(--ease-spring) forwards; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
 /* --- DİĞER BÖLÜMLER --- */
 .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
 .gallery-item { position: relative; overflow: hidden; border-radius: 12px; height: 300px; }
-.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
-.gallery-item:hover img { transform: scale(1.1); }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--dur-slower) var(--ease-out); }
+.gallery-item:hover img { transform: scale(1.06); }
 
 .contact-container { display: flex; flex-wrap: wrap; gap: 50px; align-items: center; }
 .contact-info { flex: 1; min-width: 300px; }
@@ -285,14 +332,16 @@ h2.section-title {
 
 .contact-button {
   display: flex; align-items: center; gap: 15px; padding: 20px 30px; background: var(--card-bg);
-  border: 1px solid rgba(255,255,255,0.05); border-radius: 15px; color: #fff; text-decoration: none; margin-bottom: 20px; transition: 0.3s;
+  border: 1px solid rgba(255,255,255,0.05); border-radius: 15px; color: #fff; text-decoration: none; margin-bottom: 20px;
+  transition: border-color var(--dur-base) var(--ease-out),
+              transform var(--dur-slow) var(--ease-spring);
 }
-.contact-button:hover { border-color: var(--accent); transform: translateX(10px); }
+.contact-button:hover { border-color: var(--accent); transform: translateX(8px); }
 .contact-button i { color: var(--accent); font-size: 24px; }
 
 footer { padding: 60px 10%; text-align: center; border-top: 1px solid rgba(255,255,255,0.03); }
 .social-links { margin-bottom: 30px; display: flex; justify-content: center; gap: 20px; }
-.social-links a { color: var(--accent); font-size: 20px; text-decoration: none; transition: 0.3s; }
+.social-links a { color: var(--accent); font-size: 20px; text-decoration: none; transition: transform var(--dur-slow) var(--ease-spring); }
 .social-links a:hover { transform: scale(1.2); }
 
 @media (max-width: 768px) {
@@ -323,7 +372,7 @@ footer { padding: 60px 10%; text-align: center; border-top: 1px solid rgba(255,2
     width: 24px;
     height: 1px;
     background: rgba(255,255,255,0.7);
-    transition: 0.3s;
+    transition: transform var(--dur-base) var(--ease-spring), opacity var(--dur-fast) var(--ease-out);
   }
   .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .hamburger.open span:nth-child(2) { opacity: 0; }
@@ -369,17 +418,17 @@ footer { padding: 60px 10%; text-align: center; border-top: 1px solid rgba(255,2
 </section>
 
 <section id="atmosfer">
-  <h2 class="section-title">Miyu Atmosferi</h2>
+  <h2 class="section-title reveal">Miyu Atmosferi</h2>
   <div class="gallery-grid">
-    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=600"></div>
-    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=600"></div>
-    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=600"></div>
+    <div class="gallery-item reveal reveal-d1"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=600"></div>
+    <div class="gallery-item reveal reveal-d2"><img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=600"></div>
+    <div class="gallery-item reveal reveal-d3"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=600"></div>
   </div>
 </section>
 
 <section id="menu">
-  <h2 class="section-title">Dijital Seçki</h2>
-  <div class="mood-container">
+  <h2 class="section-title reveal">Dijital Seçki</h2>
+  <div class="mood-container reveal reveal-d1">
     <p class="mood-title">Bugün nasıl hissediyorsun?</p>
     <div class="mood-buttons">
       <button class="mood-btn active" onclick="filterMood('all', this)">Hepsini Gör</button>
@@ -388,7 +437,7 @@ footer { padding: 60px 10%; text-align: center; border-top: 1px solid rgba(255,2
       <button class="mood-btn" onclick="filterMood('sophisticated', this)">Sofistike</button>
     </div>
   </div>
-  <div class="grid" id="menu-grid">
+  <div class="grid reveal reveal-d2" id="menu-grid">
     <div class="card" data-mood="energetic">
       <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=600">
       <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 24px; color: var(--accent);">V60 Origin</h3>
@@ -413,8 +462,8 @@ footer { padding: 60px 10%; text-align: center; border-top: 1px solid rgba(255,2
 </section>
 
 <section id="iletisim">
-  <h2 class="section-title">İletişim & Rezervasyon</h2>
-  <div class="contact-container">
+  <h2 class="section-title reveal">İletişim & Rezervasyon</h2>
+  <div class="contact-container reveal reveal-d1">
     <div class="contact-info">
       <p style="color: var(--text-muted); margin-bottom: 40px; font-weight: 200;">Sorularınız ve rezervasyon talepleriniz için sosyal medyamızdan veya haritadan bize ulaşabilirsiniz.</p>
 
@@ -456,6 +505,19 @@ footer { padding: 60px 10%; text-align: center; border-top: 1px solid rgba(255,2
 </footer>
 
 <script>
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+);
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
 function filterMood(mood, button) {
   document.querySelectorAll('.mood-btn').forEach(btn => btn.classList.remove('active'));
   button.classList.add('active');
