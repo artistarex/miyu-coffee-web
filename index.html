@@ -127,8 +127,6 @@ h2.section-title { font-family: 'Cormorant Garamond',serif; font-size: clamp(38p
 .gallery-item:hover .tilt-shine { opacity: 1; }
 
 .gallery-item:first-child { grid-row: 1 / 3; }
-
-/* MENU */
 #menu { background: var(--bg2); }
 .mood-container { text-align: center; margin-bottom: 48px; }
 .mood-title { font-size: 10px; text-transform: uppercase; letter-spacing: 4px; color: var(--muted); margin-bottom: 20px; }
@@ -137,24 +135,71 @@ h2.section-title { font-family: 'Cormorant Garamond',serif; font-size: clamp(38p
 .mood-btn:hover { color: #fff; border-color: rgba(255,255,255,.2); }
 .mood-btn.active { background: rgba(229,228,226,.1); border-color: var(--accent); color: var(--accent); }
 
-/* CARDS */
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 24px; }
-.card { background: var(--card-bg); border-radius: 20px; border: 1px solid var(--border); transition: border-color .4s; position: relative; overflow: hidden; will-change: transform; cursor: none; animation: card-reveal linear both; animation-timeline: view(); animation-range: entry 5% entry 40%; }
-.card:nth-child(2) { animation-delay: .08s; }
-.card:nth-child(3) { animation-delay: .16s; }
-.card:nth-child(4) { animation-delay: .24s; }
-@keyframes card-reveal { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-.card::before { content: ''; position: absolute; inset: -1px; border-radius: 20px; background: radial-gradient(300px circle at var(--mx,50%) var(--my,50%), rgba(229,228,226,.18), transparent 60%); opacity: 0; transition: opacity .4s; z-index: 0; pointer-events: none; }
-.card:hover::before { opacity: 1; }
-.card:hover { border-color: rgba(255,255,255,.12); }
-.card img { width: 100%; height: 220px; object-fit: cover; display: block; transition: transform .6s cubic-bezier(.23,1,.32,1); }
-.card:hover img { transform: scale(1.04); }
-.card-body { padding: 24px 26px 28px; position: relative; z-index: 1; }
-.card h3 { font-family: 'Cormorant Garamond',serif; font-size: 26px; font-weight: 400; color: #fff; margin-bottom: 8px; }
-.card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
-.card.fade-in { animation: fadeIn .4s ease forwards; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+/* MENÜ PREVIEW */
+.menu-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+  max-width: 860px;
+  margin: 0 auto 50px;
+}
+.menu-preview-card {
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  padding: 28px 16px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  text-decoration: none;
+  transition: all .35s cubic-bezier(.23,1,.32,1);
+  cursor: none;
+  position: relative; overflow: hidden;
+}
+.menu-preview-card::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: rgba(255,255,255,0.03);
+  transform: translateY(100%);
+  transition: transform .4s cubic-bezier(.23,1,.32,1);
+}
+.menu-preview-card:hover::before { transform: translateY(0); }
+.menu-preview-card:hover { border-color: rgba(255,255,255,0.15); transform: translateY(-6px); }
+.preview-icon { font-size: 28px; }
+.preview-label {
+  font-size: 9px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--muted);
+  transition: color .3s;
+}
+.menu-preview-card:hover .preview-label { color: var(--accent); }
 
+.menu-cta-btn {
+  display: inline-flex; align-items: center; gap: 14px;
+  padding: 16px 40px;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 50px;
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  transition: all .4s cubic-bezier(.23,1,.32,1);
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(10px);
+  cursor: none;
+  position: relative; overflow: hidden;
+}
+.menu-cta-btn::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: rgba(255,255,255,0.07);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .4s cubic-bezier(.23,1,.32,1);
+}
+.menu-cta-btn:hover::before { transform: scaleX(1); }
+.menu-cta-btn:hover { border-color: rgba(255,255,255,0.4); gap: 22px; }
+
+@media (max-width: 768px) {
+  .menu-preview-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .menu-preview-card { padding: 20px 10px; }
+  .preview-icon { font-size: 22px; }
+}
 /* İLETİŞİM */
 #iletisim { background: var(--bg); }
 #iletisim h2 { text-align: left; }
@@ -258,36 +303,43 @@ footer { padding: 56px 10%; text-align: center; border-top: 1px solid var(--bord
   </div>
 </section>
 
-<section id="menu">
-  <span class="section-label" data-reveal>Dijital Menü</span>
-  <h2 class="section-title" data-reveal>Bugün Nasıl<br><em style="font-style:italic;font-family:'Cormorant Garamond',serif;">Hissediyorsun?</em></h2>
-  <div class="mood-container">
-    <p class="mood-title">Ruh haline göre seç</p>
-    <div class="mood-buttons">
-      <button class="mood-btn active" onclick="filterMood('all',this)">Hepsini Gör</button>
-      <button class="mood-btn" onclick="filterMood('energetic',this)">Enerjik</button>
-      <button class="mood-btn" onclick="filterMood('calm',this)">Sakin</button>
-      <button class="mood-btn" onclick="filterMood('sophisticated',this)">Sofistike</button>
-    </div>
+<section id="menu" style="background: var(--bg2); text-align: center;">
+  <span class="section-label" data-reveal style="display:block; text-align:center;">Dijital Menü</span>
+  <h2 class="section-title" data-reveal>Seçkimizi<br><em style="font-style:italic;font-family:'Cormorant Garamond',serif;">Keşfedin</em></h2>
+  <p data-reveal style="color:var(--muted); font-size:14px; max-width:480px; margin: 0 auto 60px; line-height:1.8;">Sıcak kahvelerden spesiyallere, biralardan atıştırmalıklara — tüm menümüz sizi bekliyor.</p>
+
+  <!-- Kategori önizleme kartları -->
+  <div class="menu-preview-grid" data-reveal>
+    <a href="menu.html#sicak-kahve" class="menu-preview-card">
+      <span class="preview-icon">☕</span>
+      <span class="preview-label">Kahveler</span>
+    </a>
+    <a href="menu.html#alkollü-spesiyaller" class="menu-preview-card">
+      <span class="preview-icon">🍸</span>
+      <span class="preview-label">Spesiyaller</span>
+    </a>
+    <a href="menu.html#bira" class="menu-preview-card">
+      <span class="preview-icon">🍺</span>
+      <span class="preview-label">Biralar</span>
+    </a>
+    <a href="menu.html#sarap" class="menu-preview-card">
+      <span class="preview-icon">🍷</span>
+      <span class="preview-label">Şaraplar</span>
+    </a>
+    <a href="menu.html#milkshake" class="menu-preview-card">
+      <span class="preview-icon">🥤</span>
+      <span class="preview-label">Milkshake</span>
+    </a>
+    <a href="menu.html#atistirmalik" class="menu-preview-card">
+      <span class="preview-icon">🍟</span>
+      <span class="preview-label">Atıştırmalık</span>
+    </a>
   </div>
-  <div class="grid" id="menu-grid">
-    <div class="card" data-mood="energetic">
-      <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=600&q=80" alt="V60" loading="lazy">
-      <div class="card-body"><h3>V60 Origin</h3><p>Tek kökenli Etiyopya çekirdekleri ile yüksek kafein ve uyanış.</p></div>
-    </div>
-    <div class="card" data-mood="sophisticated">
-      <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=600&q=80" alt="Cocktail" loading="lazy">
-      <div class="card-body"><h3>Signature Cocktail</h3><p>Miyu'ya özel, tütsülenmiş aromalı premium miksoloji deneyimi.</p></div>
-    </div>
-    <div class="card" data-mood="calm">
-      <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80" alt="Matcha" loading="lazy">
-      <div class="card-body"><h3>Matcha Latte</h3><p>Sakin bir odaklanma sağlayan, törensel nitelikte Japon yeşil çayı.</p></div>
-    </div>
-    <div class="card" data-mood="energetic calm">
-      <img src="https://images.unsplash.com/photo-1566454825481-4e48f80aa4d7?auto=format&fit=crop&w=600&q=80" alt="Aperatif" loading="lazy">
-      <div class="card-body"><h3>Aperatif Tabağı</h3><p>Kahvenizin veya kokteylinizin yanına eşlik edecek gurme atıştırmalıklar.</p></div>
-    </div>
-  </div>
+
+  <a href="menu.html" class="menu-cta-btn" data-magnetic data-reveal>
+    Tüm Menüyü Gör
+    <i class="fas fa-arrow-right" style="font-size:10px;"></i>
+  </a>
 </section>
 
 <section id="iletisim">
@@ -417,17 +469,6 @@ document.querySelectorAll('[data-magnetic]').forEach(btn => {
     btn.style.transform = 'translate(0,0)';
   });
 });
-
-/* MOOD FİLTRE */
-function filterMood(mood, button) {
-  document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('active'));
-  button.classList.add('active');
-  document.querySelectorAll('.card').forEach(card => {
-    const show = mood === 'all' || card.dataset.mood.split(' ').includes(mood);
-    card.style.display = show ? 'block' : 'none';
-    if (show) { card.classList.add('fade-in'); setTimeout(() => card.classList.remove('fade-in'), 400); }
-  });
-}
 
 /* MOBİL MENÜ */
 function toggleMenu() {
