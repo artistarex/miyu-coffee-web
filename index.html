@@ -68,10 +68,10 @@ header.scrolled { background:rgba(6,6,6,.8); backdrop-filter:blur(30px); -webkit
 @keyframes kb3 { from{transform:scale(1.05) translate(-1%,1%)} to{transform:scale(1.12) translate(1%,-1%)} }
 .hero-vignette { position:absolute; inset:0; z-index:2; background:radial-gradient(ellipse 90% 80% at 50% 50%,transparent 35%,rgba(4,4,4,.55) 100%); pointer-events:none; }
 .hero-content { position:relative; z-index:4; padding:0 20px; }
-.hero-eyebrow { font-size:10px; letter-spacing:6px; text-transform:uppercase; color:rgba(255,255,255,.35); margin-bottom:28px; opacity:0; }
+.hero-eyebrow { font-size:10px; letter-spacing:6px; text-transform:uppercase; color:rgba(255,255,255,.75); margin-bottom:28px; opacity:0; text-shadow:0 2px 16px rgba(0,0,0,.9),0 1px 4px rgba(0,0,0,.8); }
 .hero-title { font-family:'Cormorant Garamond',serif; font-size:clamp(52px,8.5vw,108px); font-weight:300; line-height:.95; letter-spacing:-2px; color:#fff; margin-bottom:32px; opacity:0; }
 .hero-title em { font-style:italic; color:rgba(229,228,226,.85); }
-.hero-subtitle { font-size:11px; letter-spacing:4px; color:rgba(255,255,255,.38); text-transform:uppercase; margin-bottom:52px; opacity:0; }
+.hero-subtitle { font-size:11px; letter-spacing:4px; color:rgba(255,255,255,.75); text-transform:uppercase; margin-bottom:52px; opacity:0; text-shadow:0 2px 16px rgba(0,0,0,.9),0 1px 4px rgba(0,0,0,.8); }
 .hero-cta { display:inline-flex; align-items:center; gap:14px; padding:15px 34px; border:1px solid rgba(255,255,255,.2); border-radius:50px; color:rgba(255,255,255,.9); text-decoration:none; font-size:10px; letter-spacing:3px; text-transform:uppercase; transition:all .4s cubic-bezier(.23,1,.32,1); backdrop-filter:blur(16px); background:rgba(255,255,255,.06); opacity:0; position:relative; overflow:hidden; }
 .hero-cta::before { content:''; position:absolute; inset:0; background:rgba(255,255,255,.08); transform:scaleX(0); transform-origin:left; transition:transform .4s cubic-bezier(.23,1,.32,1); }
 .hero-cta:hover::before { transform:scaleX(1); }
@@ -310,6 +310,7 @@ footer { padding:56px 10%; text-align:center; border-top:1px solid var(--border)
     <a href="#"><i class="fab fa-youtube"></i></a>
   </div>
   <p class="footer-copy">© 2026 Miyu Concept Coffee & Pub — İzmir</p>
+  <p style="margin-top:12px;font-size:9px;letter-spacing:2px;color:rgba(255,255,255,.1);">Powered by <span style="color:rgba(255,255,255,.2);">Florence Brand Studio</span></p>
 </footer>
 
 <script>
