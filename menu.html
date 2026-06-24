@@ -180,17 +180,17 @@ body { background: var(--bg); color: #fff; font-family: 'Syne', sans-serif; min-
 </div>
 
 <div class="category-bar">
-  <button class="cat-btn active" onclick="filterCat('all',this)">Tümü</button>
-  <button class="cat-btn" onclick="filterCat('sicak-kahve',this)">Sıcak Kahve</button>
-  <button class="cat-btn" onclick="filterCat('soguk-kahve',this)">Soğuk Kahve</button>
-  <button class="cat-btn" onclick="filterCat('alkolu-spesiyaller',this)">Spesiyaller</button>
-  <button class="cat-btn" onclick="filterCat('alkolsuz-spesiyaller',this)">Alkolsüz</button>
-  <button class="cat-btn" onclick="filterCat('bira',this)">Bira</button>
-  <button class="cat-btn" onclick="filterCat('sarap',this)">Şarap</button>
-  <button class="cat-btn" onclick="filterCat('milkshake',this)">Milkshake</button>
-  <button class="cat-btn" onclick="filterCat('frozen',this)">Frozen</button>
-  <button class="cat-btn" onclick="filterCat('soft',this)">Soft</button>
-  <button class="cat-btn" onclick="filterCat('atistirmalik',this)">Atıştırmalık</button>
+  <button class="cat-btn active" data-cat="all">Tümü</button>
+  <button class="cat-btn" data-cat="sicak-kahve">Sıcak Kahve</button>
+  <button class="cat-btn" data-cat="soguk-kahve">Soğuk Kahve</button>
+  <button class="cat-btn" data-cat="alkolu-spesiyaller">Spesiyaller</button>
+  <button class="cat-btn" data-cat="alkolsuz-spesiyaller">Alkolsüz</button>
+  <button class="cat-btn" data-cat="bira">Bira</button>
+  <button class="cat-btn" data-cat="sarap">Şarap</button>
+  <button class="cat-btn" data-cat="milkshake">Milkshake</button>
+  <button class="cat-btn" data-cat="frozen">Frozen</button>
+  <button class="cat-btn" data-cat="soft">Soft</button>
+  <button class="cat-btn" data-cat="atistirmalik">Atıştırmalık</button>
 </div>
 
 <!-- SICAK KAHVELER -->
@@ -444,37 +444,6 @@ body { background: var(--bg); color: #fff; font-family: 'Syne', sans-serif; min-
   <p>© 2026 Miyu Concept Coffee & Pub — İzmir</p>
 </div>
 
-<script>
-function filterCat(cat, btn) {
-  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-
-  const sections = document.querySelectorAll('.menu-section');
-  const dividers = document.querySelectorAll('.divider');
-
-  sections.forEach(s => {
-    if (cat === 'all' || s.dataset.cat === cat) {
-      s.classList.remove('hidden');
-      s.querySelectorAll('.menu-item, .special-card, .extra-item').forEach((item, i) => {
-        item.style.animation = 'none';
-        item.offsetHeight;
-        item.style.animation = '';
-        item.style.animationDelay = (i * 0.04) + 's';
-      });
-    } else {
-      s.classList.add('hidden');
-    }
-  });
-
-  dividers.forEach(d => {
-    d.style.display = cat === 'all' ? 'block' : 'none';
-  });
-
-  // Sadece header'a kadar scroll et, tam sıfır değil
-  const bar = document.querySelector('.category-bar');
-  if(bar) bar.scrollIntoView({behavior:'smooth', block:'nearest'});
-}
-</script>
-
+<script src="menu.js" defer></script>
 </body>
 </html>
