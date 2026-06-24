@@ -181,16 +181,16 @@ body { background: var(--bg); color: #fff; font-family: 'Syne', sans-serif; min-
 
 <div class="category-bar">
   <button class="cat-btn active" onclick="filterCat('all',this)">Tümü</button>
-  <button class="cat-btn" onclick="filterCat('sicak-kahve',this)">☕ Sıcak Kahve</button>
-  <button class="cat-btn" onclick="filterCat('soguk-kahve',this)">🧊 Soğuk Kahve</button>
-  <button class="cat-btn" onclick="filterCat('alkollü-spesiyaller',this)">🍸 Spesiyaller</button>
-  <button class="cat-btn" onclick="filterCat('alkolsuz-spesiyaller',this)">🌿 Alkolsüz</button>
-  <button class="cat-btn" onclick="filterCat('bira',this)">🍺 Bira</button>
-  <button class="cat-btn" onclick="filterCat('sarap',this)">🍷 Şarap</button>
-  <button class="cat-btn" onclick="filterCat('milkshake',this)">🥤 Milkshake</button>
-  <button class="cat-btn" onclick="filterCat('frozen',this)">🧊 Frozen</button>
-  <button class="cat-btn" onclick="filterCat('soft',this)">🫧 Soft</button>
-  <button class="cat-btn" onclick="filterCat('atistirmalik',this)">🍟 Atıştırmalık</button>
+  <button class="cat-btn" onclick="filterCat('sicak-kahve',this)">Sıcak Kahve</button>
+  <button class="cat-btn" onclick="filterCat('soguk-kahve',this)">Soğuk Kahve</button>
+  <button class="cat-btn" onclick="filterCat('alkolu-spesiyaller',this)">Spesiyaller</button>
+  <button class="cat-btn" onclick="filterCat('alkolsuz-spesiyaller',this)">Alkolsüz</button>
+  <button class="cat-btn" onclick="filterCat('bira',this)">Bira</button>
+  <button class="cat-btn" onclick="filterCat('sarap',this)">Şarap</button>
+  <button class="cat-btn" onclick="filterCat('milkshake',this)">Milkshake</button>
+  <button class="cat-btn" onclick="filterCat('frozen',this)">Frozen</button>
+  <button class="cat-btn" onclick="filterCat('soft',this)">Soft</button>
+  <button class="cat-btn" onclick="filterCat('atistirmalik',this)">Atıştırmalık</button>
 </div>
 
 <!-- SICAK KAHVELER -->
@@ -251,7 +251,7 @@ body { background: var(--bg); color: #fff; font-family: 'Syne', sans-serif; min-
 <div class="divider"></div>
 
 <!-- SPESİYAL ALKOLLÜ -->
-<div class="menu-section" data-cat="alkollü-spesiyaller">
+<div class="menu-section" data-cat="alkolu-spesiyaller">
   <div class="section-header"><span class="section-title">Spesiyaller</span><span class="section-count">Alkollü</span></div>
   <div class="menu-list">
     <div class="special-card" style="animation-delay:.04s">
@@ -470,7 +470,9 @@ function filterCat(cat, btn) {
     d.style.display = cat === 'all' ? 'block' : 'none';
   });
 
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  // Sadece header'a kadar scroll et, tam sıfır değil
+  const bar = document.querySelector('.category-bar');
+  if(bar) bar.scrollIntoView({behavior:'smooth', block:'nearest'});
 }
 </script>
 
