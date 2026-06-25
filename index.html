@@ -145,20 +145,60 @@ footer { padding:56px 10%; text-align:center; border-top:1px solid var(--border)
 .social-links a:hover { color:var(--accent); transform:translateY(-3px); }
 .footer-copy { font-size:9px; letter-spacing:4px; color:rgba(255,255,255,.15); text-transform:uppercase; }
 
-/* LOKASYONLAR */
-.lokasyon-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:20px; }
-.lokasyon-card { background:var(--card-bg); border-radius:24px; border:1px solid var(--border); overflow:hidden; transition:border-color .4s,transform .4s cubic-bezier(.23,1,.32,1); }
+/* Fotoğrafsız lokasyon kartı */
+.lokasyon-no-img {
+  height:260px;
+  background: linear-gradient(135deg, #0d0d0d 0%, #1a1208 40%, #0d0a05 100%);
+  display:flex; align-items:center; justify-content:center;
+  position:relative; overflow:hidden;
+}
+.lokasyon-no-img::before {
+  content:'';
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse 60% 60% at 20% 80%, rgba(229,180,80,.07) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 80% 20%, rgba(229,180,80,.04) 0%, transparent 50%);
+}
+.lokasyon-no-img::after {
+  content:'';
+  position:absolute; inset:0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 40px,
+    rgba(255,255,255,.012) 40px,
+    rgba(255,255,255,.012) 41px
+  );
+}
+.lokasyon-no-img-inner {
+  text-align:center; position:relative; z-index:1;
+}
+.lokasyon-no-img-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:42px; font-weight:300; font-style:italic;
+  color:rgba(229,228,226,.7);
+  letter-spacing:2px;
+  margin-bottom:10px;
+}
+.lokasyon-no-img-sub {
+  font-size:9px; letter-spacing:5px; text-transform:uppercase;
+  color:rgba(255,255,255,.2);
+}
+
+
+.lokasyon-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:20px; width:100%; }
+.lokasyon-card { background:var(--card-bg); border-radius:24px; border:1px solid var(--border); overflow:hidden; transition:border-color .4s,transform .4s cubic-bezier(.23,1,.32,1); display:flex; flex-direction:column; }
 .lokasyon-card:hover { border-color:rgba(255,255,255,.12); transform:translateY(-6px); }
 .lokasyon-img-wrap { position:relative; height:260px; overflow:hidden; }
 .lokasyon-img-wrap img { width:100%; height:100%; object-fit:cover; transition:transform .6s cubic-bezier(.23,1,.32,1); }
 .lokasyon-card:hover .lokasyon-img-wrap img { transform:scale(1.05); }
 .lokasyon-badge { position:absolute; top:16px; left:16px; background:rgba(6,6,6,.7); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,.1); border-radius:20px; padding:5px 14px; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.6); }
-.lokasyon-body { padding:28px 28px 32px; }
+.lokasyon-body { padding:28px 28px 32px; flex:1; display:flex; flex-direction:column; }
 .lokasyon-body h3 { font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:300; color:#fff; margin-bottom:12px; }
 .lokasyon-body p { font-size:13px; color:var(--muted); line-height:1.8; margin-bottom:20px; }
 .lokasyon-tags { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px; }
 .lokasyon-tags span { font-size:10px; letter-spacing:1px; padding:5px 12px; background:rgba(255,255,255,.04); border:1px solid var(--border); border-radius:20px; color:rgba(255,255,255,.45); }
-.lokasyon-btn { display:inline-flex; align-items:center; gap:8px; padding:12px 24px; border:1px solid rgba(255,255,255,.12); border-radius:30px; color:rgba(255,255,255,.7); text-decoration:none; font-size:10px; letter-spacing:2px; text-transform:uppercase; transition:all .3s; }
+.lokasyon-btn { margin-top:auto; display:inline-flex; align-items:center; gap:8px; padding:12px 24px; border:1px solid rgba(255,255,255,.12); border-radius:30px; color:rgba(255,255,255,.7); text-decoration:none; font-size:10px; letter-spacing:2px; text-transform:uppercase; transition:all .3s; }
 .lokasyon-btn:hover { border-color:var(--accent); color:#fff; transform:translateX(4px); }
 
 @media (max-width:768px) {
@@ -277,32 +317,32 @@ footer { padding:56px 10%; text-align:center; border-top:1px solid var(--border)
 
   <div class="lokasyon-grid" data-reveal>
 
-    <!-- Lokasyon 1: Place Soleil -->
+    <!-- Lokasyon 1: Plage Soleil -->
     <div class="lokasyon-card">
-      <div class="lokasyon-img-wrap">
-        <img src="atm1.jpg" alt="Miyu Place Soleil" loading="lazy">
-        <div class="lokasyon-badge">Şube 1</div>
+      <div class="lokasyon-no-img">
+        <div class="lokasyon-no-img-inner">
+          <div class="lokasyon-no-img-title">Plage Soleil</div>
+        </div>
       </div>
       <div class="lokasyon-body">
-        <h3>Place Soleil</h3>
+        <h3>Plage Soleil</h3>
         <p>Güneş batımını izlerken yanınızda bir Miyu imzalı kokteyl. Manzara ve huzurun buluşma noktası.</p>
         <div class="lokasyon-tags">
           <span>🌅 Gün Batımı Manzarası</span>
           <span>🍸 Cocktail Bar</span>
           <span>☕ Specialty Coffee</span>
         </div>
-        <a href="https://maps.app.goo.gl/nbyb3S4YiqPPqeKTA" target="_blank" class="lokasyon-btn">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Haritada Gör
+        <a href="https://www.instagram.com/plagesoleill/" target="_blank" class="lokasyon-btn">
+          <i class="fab fa-instagram" style="font-size:14px;"></i>
+          @plagesoleill
         </a>
       </div>
     </div>
 
-    <!-- Lokasyon 2: Merkez -->
+    <!-- Lokasyon 2: Miyu Coffee -->
     <div class="lokasyon-card">
       <div class="lokasyon-img-wrap">
-        <img src="atm5.jpg" alt="Miyu Merkez" loading="lazy">
-        <div class="lokasyon-badge">Şube 2</div>
+        <img src="atm5.jpg" alt="Miyu Coffee" loading="lazy">
       </div>
       <div class="lokasyon-body">
         <h3>Miyu Coffee</h3>
