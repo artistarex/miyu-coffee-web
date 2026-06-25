@@ -4,179 +4,92 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Miyu Concept Coffee — Menü</title>
-<meta name="description" content="Miyu Concept Coffee & Pub dijital menüsü. Kahve, kokteyl, bira ve daha fazlası.">
+<meta name="description" content="Miyu Concept Coffee & Pub dijital menüsü.">
 <link rel="icon" type="image/png" href="miyu-logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Syne:wght@400;600&display=swap" rel="stylesheet">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin:0; padding:0; box-sizing:border-box; }
 :root {
-  --bg: #080808;
-  --card: #111111;
-  --accent: #E5E4E2;
-  --muted: #555555;
-  --border: rgba(255,255,255,0.06);
-  --ease-spring: cubic-bezier(0.16,1,0.3,1);
-  --ease-out: cubic-bezier(0,0,0.2,1);
+  --bg:#080808; --card:#111111; --accent:#E5E4E2;
+  --muted:#555; --border:rgba(255,255,255,0.06);
 }
-html { scroll-behavior: smooth; }
-body { background: var(--bg); color: #fff; font-family: 'Syne', sans-serif; min-height: 100vh; padding-bottom: 80px; }
+body { background:var(--bg); color:#fff; font-family:'Syne',sans-serif; min-height:100vh; padding-bottom:80px; }
 
 /* HEADER */
-.menu-header {
-  position: sticky; top: 0; z-index: 100;
-  padding: 18px 24px 14px;
-  background: rgba(8,8,8,0.9);
-  backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
-  border-bottom: 1px solid var(--border);
-  text-align: center;
-}
-.menu-logo { height: 48px; filter: invert(1); margin-bottom: 4px; display: block; margin: 0 auto 6px; }
-.menu-tagline { font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: var(--muted); }
+.menu-header { position:sticky; top:0; z-index:100; padding:18px 24px 14px; background:rgba(8,8,8,.92); backdrop-filter:blur(30px); border-bottom:1px solid var(--border); text-align:center; }
+.menu-logo { height:48px; filter:invert(1); display:block; margin:0 auto 6px; }
+.menu-tagline { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:var(--muted); }
 
 /* KATEGORİ BAR */
-.category-bar {
-  display: flex; gap: 8px; overflow-x: auto;
-  padding: 16px 20px; scrollbar-width: none; -ms-overflow-style: none;
-  position: sticky; top: 84px; z-index: 90;
-  background: rgba(8,8,8,0.85); backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-}
-.category-bar::-webkit-scrollbar { display: none; }
-.cat-btn {
-  flex-shrink: 0;
-  background: rgba(255,255,255,0.04); border: 1px solid var(--border);
-  color: var(--muted); padding: 8px 16px; border-radius: 30px;
-  font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
-  cursor: pointer; transition: all 250ms var(--ease-out);
-  font-family: 'Syne', sans-serif; white-space: nowrap;
-}
-.cat-btn.active, .cat-btn:hover { background: #fff; color: #000; border-color: #fff; }
+.category-bar { display:flex; gap:8px; overflow-x:auto; padding:14px 20px; scrollbar-width:none; position:sticky; top:82px; z-index:90; background:rgba(8,8,8,.88); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); }
+.category-bar::-webkit-scrollbar { display:none; }
+.cat-btn { flex-shrink:0; background:rgba(255,255,255,.04); border:1px solid var(--border); color:var(--muted); padding:8px 16px; border-radius:30px; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer; transition:all .25s; font-family:'Syne',sans-serif; white-space:nowrap; }
+.cat-btn.active, .cat-btn:hover { background:#fff; color:#000; border-color:#fff; }
 
 /* SECTION */
-.menu-section { display: block; }
-.menu-section.hidden { display: none; }
+.menu-section { display:block; }
+.menu-section.hidden { display:none; }
+.section-header { padding:28px 20px 10px; display:flex; align-items:baseline; gap:12px; }
+.section-title { font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:300; color:#fff; }
+.section-count { font-size:10px; letter-spacing:2px; color:var(--muted); text-transform:uppercase; }
 
-.section-header {
-  padding: 32px 20px 12px;
-  display: flex; align-items: baseline; gap: 14px;
-}
-.section-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 28px; font-weight: 300; color: #fff;
-}
-.section-count {
-  font-size: 10px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase;
-}
-
-/* İKİ KOLON FİYAT BAŞLIĞI */
-.price-header {
-  display: flex; justify-content: flex-end; gap: 0;
-  padding: 0 20px 8px; border-bottom: 1px solid var(--border); margin: 0 20px;
-}
-.price-col-label {
-  font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
-  color: var(--muted); width: 72px; text-align: center;
-}
+/* FİYAT BAŞLIĞI */
+.price-header { display:flex; justify-content:flex-end; padding:0 20px 8px; border-bottom:1px solid var(--border); margin:0 20px; }
+.price-col-label { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); width:72px; text-align:center; }
 
 /* MENÜ LİSTESİ */
-.menu-list { padding: 4px 20px 0; display: flex; flex-direction: column; gap: 2px; }
-
-.menu-item {
-  display: flex; align-items: center; gap: 12px;
-  padding: 14px 16px; background: var(--card);
-  border-radius: 12px; border: 1px solid var(--border);
-  transition: border-color 250ms var(--ease-out), background 250ms var(--ease-out);
-  animation: fadeUp 0.4s var(--ease-spring) both;
-  opacity: 0;
-}
-.menu-item:hover { border-color: rgba(255,255,255,0.1); background: #161616; }
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.item-icon {
-  font-size: 20px; width: 38px; height: 38px;
-  display: flex; align-items: center; justify-content: center;
-  background: rgba(255,255,255,0.04); border-radius: 10px; flex-shrink: 0;
-}
-.item-info { flex: 1; min-width: 0; }
-.item-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 18px; font-weight: 400; color: #fff;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  margin-bottom: 2px;
-}
-.item-sub { font-size: 10px; color: var(--muted); font-weight: 200; font-style: italic; }
-
-/* FİYAT */
-.item-price { font-size: 14px; color: var(--accent); font-weight: 300; white-space: nowrap; text-align: right; }
-.item-price-dual { display: flex; gap: 4px; }
-.price-sm, .price-lg {
-  font-size: 13px; color: var(--accent); font-weight: 300;
-  width: 68px; text-align: center;
-}
-.price-lg { color: rgba(229,228,226,0.6); }
-
-/* BADGE */
-.item-badge {
-  font-size: 8px; letter-spacing: 1px; padding: 3px 8px;
-  border-radius: 20px; border: 1px solid rgba(229,228,226,0.25);
-  color: var(--accent); flex-shrink: 0; text-transform: uppercase;
-}
+.menu-list { padding:4px 20px 0; display:flex; flex-direction:column; gap:2px; }
+.menu-item { display:flex; align-items:center; gap:12px; padding:14px 16px; background:var(--card); border-radius:12px; border:1px solid var(--border); transition:border-color .25s,background .25s; animation:fadeUp .4s ease both; opacity:0; }
+.menu-item:hover { border-color:rgba(255,255,255,.1); background:#161616; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+.item-icon { font-size:20px; width:38px; height:38px; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,.04); border-radius:10px; flex-shrink:0; }
+.item-info { flex:1; min-width:0; }
+.item-name { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:400; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-bottom:2px; }
+.item-sub { font-size:10px; color:var(--muted); font-style:italic; line-height:1.4; }
+.item-price { font-size:14px; color:var(--accent); font-weight:300; white-space:nowrap; text-align:right; }
+.item-price-dual { display:flex; gap:4px; }
+.price-sm,.price-lg { font-size:13px; color:var(--accent); font-weight:300; width:68px; text-align:center; }
+.price-lg { color:rgba(229,228,226,.55); }
+.item-badge { font-size:8px; letter-spacing:1px; padding:3px 8px; border-radius:20px; border:1px solid rgba(229,228,226,.25); color:var(--accent); flex-shrink:0; text-transform:uppercase; }
 
 /* SPESİYAL KART */
-.special-card {
-  margin: 4px 0; padding: 18px 20px;
-  background: var(--card); border-radius: 16px;
-  border: 1px solid var(--border);
-  transition: border-color 250ms var(--ease-out), background 250ms var(--ease-out);
-  animation: fadeUp 0.4s var(--ease-spring) both; opacity: 0;
-  cursor: default;
-}
-.special-card:hover { border-color: rgba(229,228,226,0.15); background: #161616; }
-.special-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 20px; font-weight: 400; color: #fff; margin-bottom: 6px;
-  display: flex; align-items: baseline; justify-content: space-between;
-}
-.special-name span { font-size: 14px; color: var(--accent); font-weight: 300; }
-.special-desc { font-size: 11px; color: var(--muted); line-height: 1.6; font-style: italic; }
+.special-card { margin:2px 0; padding:18px 20px; background:var(--card); border-radius:14px; border:1px solid var(--border); transition:border-color .25s,background .25s; animation:fadeUp .4s ease both; opacity:0; }
+.special-card:hover { border-color:rgba(229,228,226,.15); background:#161616; }
+.special-name { font-family:'Cormorant Garamond',serif; font-size:19px; font-weight:400; color:#fff; margin-bottom:5px; display:flex; align-items:baseline; justify-content:space-between; }
+.special-name span { font-size:14px; color:var(--accent); font-weight:300; }
+.special-desc { font-size:11px; color:var(--muted); line-height:1.6; font-style:italic; }
+
+/* ALKOLLER TABLO */
+.alkol-table { width:100%; border-collapse:collapse; font-size:13px; }
+.alkol-table th { text-align:left; padding:8px 12px; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); border-bottom:1px solid var(--border); font-weight:400; }
+.alkol-table td { padding:12px 12px; border-bottom:1px solid rgba(255,255,255,.03); color:rgba(255,255,255,.8); }
+.alkol-table td:first-child { font-family:'Cormorant Garamond',serif; font-size:17px; color:#fff; }
+.alkol-table td:not(:first-child) { text-align:right; color:rgba(229,228,226,.6); font-size:12px; }
+.alkol-sub-header { padding:20px 20px 4px; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,.3); }
+.alkol-wrap { margin:4px 20px 0; background:var(--card); border-radius:14px; border:1px solid var(--border); overflow:hidden; animation:fadeUp .4s ease both; opacity:0; }
+
+/* EXTRAS */
+.extras-wrap { margin:12px 20px 0; background:rgba(255,255,255,.025); border:1px solid var(--border); border-radius:12px; padding:14px 16px; }
+.extras-title { font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-bottom:10px; }
+.extras-list { display:flex; gap:8px; flex-wrap:wrap; }
+.extra-tag { background:rgba(229,228,226,.06); border:1px solid var(--border); border-radius:8px; padding:6px 12px; font-size:11px; color:rgba(255,255,255,.5); }
+.extra-tag span { color:var(--accent); }
 
 /* DIVIDER */
-.divider { height: 1px; background: var(--border); margin: 20px 20px 0; }
-
-/* EKSTRA */
-.extras-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
-  padding: 4px 20px 0;
-}
-.extra-item {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 12px 14px; background: var(--card);
-  border-radius: 10px; border: 1px solid var(--border);
-  animation: fadeUp 0.4s var(--ease-spring) both; opacity: 0;
-}
-.extra-name { font-size: 12px; color: rgba(255,255,255,0.6); }
-.extra-price { font-size: 13px; color: var(--accent); }
+.divider { height:1px; background:var(--border); margin:20px 20px 0; }
 
 /* FOOTER */
-.menu-footer { text-align: center; padding: 48px 24px 0; }
-.menu-footer a {
-  display: inline-flex; align-items: center; gap: 8px;
-  color: var(--muted); text-decoration: none; font-size: 11px;
-  letter-spacing: 2px; text-transform: uppercase;
-  transition: color 250ms var(--ease-out);
-}
-.menu-footer a:hover { color: #fff; }
-.menu-footer p { margin-top: 20px; font-size: 9px; letter-spacing: 3px; color: rgba(255,255,255,0.1); }
+.menu-footer { text-align:center; padding:48px 24px 0; }
+.menu-footer a { display:inline-flex; align-items:center; gap:8px; color:var(--muted); text-decoration:none; font-size:11px; letter-spacing:2px; text-transform:uppercase; transition:color .25s; }
+.menu-footer a:hover { color:#fff; }
+.menu-footer p { margin-top:20px; font-size:9px; letter-spacing:3px; color:rgba(255,255,255,.1); }
 </style>
 </head>
 <body>
 
 <div class="menu-header">
   <img src="miyu-logo.png" alt="Miyu" class="menu-logo">
-  <p class="menu-tagline">Concept Coffee & Pub · İzmir</p>
+  <p class="menu-tagline">Concept Coffee & Pub · Yenifoça</p>
 </div>
 
 <div class="category-bar">
@@ -187,252 +100,259 @@ body { background: var(--bg); color: #fff; font-family: 'Syne', sans-serif; min-
   <button class="cat-btn" data-cat="alkolsuz-spesiyaller">Alkolsüz</button>
   <button class="cat-btn" data-cat="bira">Bira</button>
   <button class="cat-btn" data-cat="sarap">Şarap</button>
+  <button class="cat-btn" data-cat="alkoller">Alkoller</button>
   <button class="cat-btn" data-cat="milkshake">Milkshake</button>
   <button class="cat-btn" data-cat="frozen">Frozen</button>
   <button class="cat-btn" data-cat="soft">Soft</button>
   <button class="cat-btn" data-cat="atistirmalik">Atıştırmalık</button>
+  <button class="cat-btn" data-cat="tatlilar">Tatlılar</button>
 </div>
 
 <!-- SICAK KAHVELER -->
 <div class="menu-section" data-cat="sicak-kahve">
-  <div class="section-header">
-    <span class="section-title">Sıcak Kahveler</span>
-    <span class="section-count">11 ürün</span>
-  </div>
-  <div class="price-header">
-    <span class="price-col-label">Küçük</span>
-    <span class="price-col-label">Büyük</span>
-  </div>
+  <div class="section-header"><span class="section-title">Sıcak Kahveler</span><span class="section-count">11 ürün</span></div>
+  <div class="price-header"><span class="price-col-label">Küçük</span><span class="price-col-label">Büyük</span></div>
   <div class="menu-list">
-    <div class="menu-item" style="animation-delay:.04s"><div class="item-icon">☕</div><div class="item-info"><div class="item-name">Espresso</div></div><div class="item-price-dual"><div class="price-sm">140 ₺</div><div class="price-lg">180 ₺</div></div></div>
-    <div class="menu-item" style="animation-delay:.07s"><div class="item-icon">☕</div><div class="item-info"><div class="item-name">Americano</div></div><div class="item-price-dual"><div class="price-sm">160 ₺</div><div class="price-lg">190 ₺</div></div></div>
-    <div class="menu-item" style="animation-delay:.10s"><div class="item-icon">🥛</div><div class="item-info"><div class="item-name">Latte</div></div><div class="item-price-dual"><div class="price-sm">180 ₺</div><div class="price-lg">200 ₺</div></div></div>
-    <div class="menu-item" style="animation-delay:.13s"><div class="item-icon">☁️</div><div class="item-info"><div class="item-name">Cappuccino</div></div><div class="item-price-dual"><div class="price-sm">180 ₺</div><div class="price-lg">200 ₺</div></div></div>
-    <div class="menu-item" style="animation-delay:.16s"><div class="item-icon">🥛</div><div class="item-info"><div class="item-name">Flat White</div></div><div class="item-price-dual"><div class="price-sm">200 ₺</div><div class="price-lg">220 ₺</div></div></div>
-    <div class="menu-item" style="animation-delay:.19s"><div class="item-icon">🤍</div><div class="item-info"><div class="item-name">White Mocha</div></div><div class="item-price-dual"><div class="price-sm">200 ₺</div><div class="price-lg">220 ₺</div></div></div>
-    <div class="menu-item" style="animation-delay:.22s"><div class="item-icon">🍫</div><div class="item-info"><div class="item-name">Dark Mocha</div></div><div class="item-price-dual"><div class="price-sm">200 ₺</div><div class="price-lg">220 ₺</div></div></div>
-    <div class="menu-item" style="animation-delay:.25s"><div class="item-icon">☕</div><div class="item-info"><div class="item-name">Machiato</div></div><div class="item-price-dual"><div class="price-sm">200 ₺</div><div class="price-lg">220 ₺</div></div></div>
-    <div class="menu-item" style="animation-delay:.28s"><div class="item-icon">🫖</div><div class="item-info"><div class="item-name">Filtre Kahve</div></div><div class="item-price-dual"><div class="price-sm">160 ₺</div><div class="price-lg">190 ₺</div></div></div>
-    <div class="menu-item" style="animation-delay:.31s"><div class="item-icon">☕</div><div class="item-info"><div class="item-name">Türk Kahvesi</div></div><div class="item-price-dual"><div class="price-sm">140 ₺</div><div class="price-lg">180 ₺</div></div></div>
-    <div class="menu-item" style="animation-delay:.34s"><div class="item-icon">☕</div><div class="item-info"><div class="item-name">Sütlü Türk Kahvesi</div></div><div class="item-price-dual"><div class="price-sm">160 ₺</div><div class="price-lg">200 ₺</div></div></div>
-    <div class="menu-item" style="animation-delay:.37s"><div class="item-icon">🍵</div><div class="item-info"><div class="item-name">Çay</div></div><div class="item-price">90 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.03s"><div class="item-icon">☕</div><div class="item-info"><div class="item-name">Espresso</div></div><div class="item-price-dual"><div class="price-sm">140 ₺</div><div class="price-lg">180 ₺</div></div></div>
+    <div class="menu-item" style="animation-delay:.06s"><div class="item-icon">☕</div><div class="item-info"><div class="item-name">Americano</div></div><div class="item-price-dual"><div class="price-sm">160 ₺</div><div class="price-lg">190 ₺</div></div></div>
+    <div class="menu-item" style="animation-delay:.09s"><div class="item-icon">🥛</div><div class="item-info"><div class="item-name">Latte</div></div><div class="item-price-dual"><div class="price-sm">180 ₺</div><div class="price-lg">200 ₺</div></div></div>
+    <div class="menu-item" style="animation-delay:.12s"><div class="item-icon">☁️</div><div class="item-info"><div class="item-name">Cappuccino</div></div><div class="item-price-dual"><div class="price-sm">180 ₺</div><div class="price-lg">200 ₺</div></div></div>
+    <div class="menu-item" style="animation-delay:.15s"><div class="item-icon">🥛</div><div class="item-info"><div class="item-name">Flat White</div></div><div class="item-price-dual"><div class="price-sm">200 ₺</div><div class="price-lg">220 ₺</div></div></div>
+    <div class="menu-item" style="animation-delay:.18s"><div class="item-icon">🤍</div><div class="item-info"><div class="item-name">White Mocha</div></div><div class="item-price-dual"><div class="price-sm">200 ₺</div><div class="price-lg">220 ₺</div></div></div>
+    <div class="menu-item" style="animation-delay:.21s"><div class="item-icon">🍫</div><div class="item-info"><div class="item-name">Dark Mocha</div></div><div class="item-price-dual"><div class="price-sm">200 ₺</div><div class="price-lg">220 ₺</div></div></div>
+    <div class="menu-item" style="animation-delay:.24s"><div class="item-icon">☕</div><div class="item-info"><div class="item-name">Machiato</div></div><div class="item-price-dual"><div class="price-sm">200 ₺</div><div class="price-lg">220 ₺</div></div></div>
+    <div class="menu-item" style="animation-delay:.27s"><div class="item-icon">🫖</div><div class="item-info"><div class="item-name">Filtre Kahve</div></div><div class="item-price-dual"><div class="price-sm">160 ₺</div><div class="price-lg">190 ₺</div></div></div>
+    <div class="menu-item" style="animation-delay:.30s"><div class="item-icon">☕</div><div class="item-info"><div class="item-name">Türk Kahvesi</div></div><div class="item-price-dual"><div class="price-sm">140 ₺</div><div class="price-lg">180 ₺</div></div></div>
+    <div class="menu-item" style="animation-delay:.33s"><div class="item-icon">☕</div><div class="item-info"><div class="item-name">Sütlü Türk Kahvesi</div></div><div class="item-price-dual"><div class="price-sm">160 ₺</div><div class="price-lg">200 ₺</div></div></div>
   </div>
-  <div style="padding: 16px 20px 0;">
-    <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px;">
-      <div style="font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px;">Ekstra Seçenekler</div>
-      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-        <span style="background: rgba(229,228,226,0.06); border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px; font-size: 11px; color: rgba(255,255,255,0.5);">Ekstra Shot <span style="color: var(--accent);">60 ₺</span></span>
-        <span style="background: rgba(229,228,226,0.06); border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px; font-size: 11px; color: rgba(255,255,255,0.5);">Ekstra Şurup <span style="color: var(--accent);">60 ₺</span></span>
-        <span style="background: rgba(229,228,226,0.06); border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px; font-size: 11px; color: rgba(255,255,255,0.5);">Bitkisel Süt <span style="color: var(--accent);">80 ₺</span></span>
-      </div>
+  <div class="extras-wrap">
+    <div class="extras-title">Ekstra Seçenekler</div>
+    <div class="extras-list">
+      <div class="extra-tag">Ekstra Shot <span>60 ₺</span></div>
+      <div class="extra-tag">Ekstra Şurup <span>60 ₺</span></div>
+      <div class="extra-tag">Bitkisel Süt <span>80 ₺</span></div>
     </div>
   </div>
 </div>
-
 <div class="divider"></div>
 
 <!-- SOĞUK KAHVELER -->
 <div class="menu-section" data-cat="soguk-kahve">
-  <div class="section-header"><span class="section-title">Soğuk Kahveler</span><span class="section-count">10 ürün</span></div>
+  <div class="section-header"><span class="section-title">Soğuk Kahveler</span><span class="section-count">11 ürün</span></div>
   <div class="menu-list">
-    <div class="menu-item" style="animation-delay:.04s"><div class="item-icon">🧊</div><div class="item-info"><div class="item-name">Ice Americano</div></div><div class="item-price">200 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.07s"><div class="item-icon">🧊</div><div class="item-info"><div class="item-name">Ice Filtre</div></div><div class="item-price">200 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.10s"><div class="item-icon">🥛</div><div class="item-info"><div class="item-name">Ice Latte</div></div><div class="item-price">220 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.13s"><div class="item-icon">🥛</div><div class="item-info"><div class="item-name">Ice Flat White</div></div><div class="item-price">260 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.16s"><div class="item-icon">🤍</div><div class="item-info"><div class="item-name">Ice White Mocha</div></div><div class="item-price">260 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.19s"><div class="item-icon">🍫</div><div class="item-info"><div class="item-name">Ice Dark Mocha</div></div><div class="item-price">260 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.22s"><div class="item-icon">☕</div><div class="item-info"><div class="item-name">Ice Machiato</div></div><div class="item-price">260 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.25s"><div class="item-icon">🧋</div><div class="item-info"><div class="item-name">Frappe</div></div><div class="item-price">260 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.28s"><div class="item-icon">🧋</div><div class="item-info"><div class="item-name">Frappucino</div></div><div class="item-price">280 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.31s"><div class="item-icon">🫖</div><div class="item-info"><div class="item-name">Cold Brew</div><div class="item-sub">12 saat soğuk demleme</div></div><div class="item-price">250 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.03s"><div class="item-icon">🧊</div><div class="item-info"><div class="item-name">Ice Americano</div></div><div class="item-price">200 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.06s"><div class="item-icon">🧊</div><div class="item-info"><div class="item-name">Ice Filtre</div></div><div class="item-price">200 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.09s"><div class="item-icon">🥛</div><div class="item-info"><div class="item-name">Ice Latte</div></div><div class="item-price">220 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.12s"><div class="item-icon">🥛</div><div class="item-info"><div class="item-name">Ice Flat White</div></div><div class="item-price">260 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.15s"><div class="item-icon">🤍</div><div class="item-info"><div class="item-name">Ice White Mocha</div></div><div class="item-price">260 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.18s"><div class="item-icon">🍫</div><div class="item-info"><div class="item-name">Ice Dark Mocha</div></div><div class="item-price">260 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.21s"><div class="item-icon">☕</div><div class="item-info"><div class="item-name">Ice Machiato</div></div><div class="item-price">260 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.24s"><div class="item-icon">🧋</div><div class="item-info"><div class="item-name">Frappe</div></div><div class="item-price">260 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.27s"><div class="item-icon">🧋</div><div class="item-info"><div class="item-name">Frappucino</div></div><div class="item-price">280 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.30s"><div class="item-icon">🫖</div><div class="item-info"><div class="item-name">Cold Brew</div><div class="item-sub">12 saat soğuk demleme</div></div><div class="item-price">250 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.33s"><div class="item-icon">🍵</div><div class="item-info"><div class="item-name">Matcha Latte</div></div><div class="item-price">300 ₺</div></div>
   </div>
 </div>
-
 <div class="divider"></div>
 
-<!-- SPESİYAL ALKOLLÜ -->
+<!-- ALKOLLÜ SPESİYALLER -->
 <div class="menu-section" data-cat="alkolu-spesiyaller">
   <div class="section-header"><span class="section-title">Spesiyaller</span><span class="section-count">Alkollü</span></div>
   <div class="menu-list">
-    <div class="special-card" style="animation-delay:.04s">
-      <div class="special-name">MYU 1 <span>800 ₺</span></div>
-      <div class="special-desc">Soğuk sıkım kuzu kulağı, turunç, yeşil erik, limon otu, Gin 6cl</div>
-    </div>
-    <div class="special-card" style="animation-delay:.08s">
-      <div class="special-name">MYU 2 <span>800 ₺</span></div>
-      <div class="special-desc">Soğuk sıkım mango, Arnavut biberi, turunç, Tequila 6cl</div>
-    </div>
-    <div class="special-card" style="animation-delay:.12s">
-      <div class="special-name">MYU 3 <span>800 ₺</span></div>
-      <div class="special-desc">Soğuk sıkım limon, bergamot, vanilya, şeftali, Viski 6cl</div>
-    </div>
-    <div class="special-card" style="animation-delay:.16s">
-      <div class="special-name">MYU 4 <span>750 ₺</span></div>
-      <div class="special-desc">Soğuk sıkım Bodrum mandalina, turunç, Votka 6cl</div>
-    </div>
-    <div class="special-card" style="animation-delay:.20s">
-      <div class="special-name">Colombia <span>680 ₺</span></div>
-      <div class="special-desc">Espresso, Kahlua, Malibu</div>
-    </div>
-    <div class="special-card" style="animation-delay:.24s">
-      <div class="special-name">Etiopya <span>700 ₺</span></div>
-      <div class="special-desc">Vanilya, demleme vanilyalı votka, Baileys, süt</div>
-    </div>
-    <div class="special-card" style="animation-delay:.28s">
-      <div class="special-name">Brezilya <span>720 ₺</span></div>
-      <div class="special-desc">Irish viski, Baileys, espresso, süt kreması</div>
-    </div>
+    <div class="special-card" style="animation-delay:.03s"><div class="special-name">Miyu 1 <span>700 ₺</span></div><div class="special-desc">Soğuk sıkım kuzu kulağı, turunç, yeşil erik, limon otu, Gin 6cl</div></div>
+    <div class="special-card" style="animation-delay:.06s"><div class="special-name">Miyu 2 <span>700 ₺</span></div><div class="special-desc">Soğuk sıkım mango, Arnavut biberi, turunç, Tequila 6cl</div></div>
+    <div class="special-card" style="animation-delay:.09s"><div class="special-name">Miyu 3 <span>700 ₺</span></div><div class="special-desc">Soğuk sıkım limon, bergamot, vanilya, şeftali, Viski 6cl</div></div>
+    <div class="special-card" style="animation-delay:.12s"><div class="special-name">Miyu 4 <span>700 ₺</span></div><div class="special-desc">Soğuk sıkım Bodrum mandalina, turunç, Votka 6cl</div></div>
+    <div class="special-card" style="animation-delay:.15s"><div class="special-name">Miyu 5 <span>700 ₺</span></div><div class="special-desc">Yeşil çay, böğürtlen, yaban mersini, Gin 6cl</div></div>
+  </div>
+  <div class="section-header" style="padding-top:20px;"><span class="section-title" style="font-size:20px;">Kahveli Kokteyller</span></div>
+  <div class="menu-list">
+    <div class="special-card" style="animation-delay:.18s"><div class="special-name">Colombia <span>700 ₺</span></div><div class="special-desc">Espresso, Kahlua, Malibu</div></div>
+    <div class="special-card" style="animation-delay:.21s"><div class="special-name">Etiopya <span>700 ₺</span></div><div class="special-desc">Vanilya, demleme vanilyalı votka, Baileys, süt</div></div>
+    <div class="special-card" style="animation-delay:.24s"><div class="special-name">Brezilya <span>700 ₺</span></div><div class="special-desc">Irish viski, Baileys, espresso, süt kreması</div></div>
   </div>
 </div>
-
 <div class="divider"></div>
 
-<!-- SPESİYAL ALKOLSÜZ -->
+<!-- ALKOLSÜZ SPESİYALLER -->
 <div class="menu-section" data-cat="alkolsuz-spesiyaller">
-  <div class="section-header"><span class="section-title">Spesiyaller</span><span class="section-count">Alkolsüz</span></div>
+  <div class="section-header"><span class="section-title">Alkolsüz Spesiyaller</span></div>
   <div class="menu-list">
-    <div class="menu-item" style="animation-delay:.04s"><div class="item-icon">🍋</div><div class="item-info"><div class="item-name">Limonata</div></div><div class="item-price">200 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.07s"><div class="item-icon">🍋</div><div class="item-info"><div class="item-name">Aromalı Limonata</div></div><div class="item-price">250 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.10s"><div class="item-icon">🌿</div><div class="item-info"><div class="item-name">Cool Lime</div></div><div class="item-price">250 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.13s"><div class="item-icon">🫐</div><div class="item-info"><div class="item-name">Cool Berry</div></div><div class="item-price">250 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.16s"><div class="item-icon">💜</div><div class="item-info"><div class="item-name">Lavanta Mix</div></div><div class="item-price">250 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.19s"><div class="item-icon">🫐</div><div class="item-info"><div class="item-name">Blue Logan</div></div><div class="item-price">280 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.22s"><div class="item-icon">🌿</div><div class="item-info"><div class="item-name">Miyu Fresh</div></div><div class="item-price">280 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.25s"><div class="item-icon">🍵</div><div class="item-info"><div class="item-name">Matcha Latte</div></div><div class="item-price">300 ₺</div></div>
+    <div class="special-card" style="animation-delay:.03s"><div class="special-name">Miyu 1 Alkolsüz <span>450 ₺</span></div><div class="special-desc">Soğuk sıkım kuzu kulağı, turunç, yeşil erik, limon otu</div></div>
+    <div class="special-card" style="animation-delay:.06s"><div class="special-name">Miyu 2 Alkolsüz <span>450 ₺</span></div><div class="special-desc">Soğuk sıkım mango, Arnavut biberi, turunç</div></div>
+    <div class="special-card" style="animation-delay:.09s"><div class="special-name">Miyu 3 Alkolsüz <span>450 ₺</span></div><div class="special-desc">Soğuk sıkım limon, bergamot, vanilya, şeftali</div></div>
+    <div class="special-card" style="animation-delay:.12s"><div class="special-name">Miyu 4 Alkolsüz <span>450 ₺</span></div><div class="special-desc">Soğuk sıkım Bodrum mandalina, turunç</div></div>
+    <div class="special-card" style="animation-delay:.15s"><div class="special-name">Miyu 5 Alkolsüz <span>450 ₺</span></div><div class="special-desc">Yeşil çay, böğürtlen, yaban mersini</div></div>
   </div>
-  <div style="padding: 8px 20px 0;">
-    <div class="special-card" style="animation-delay:.28s">
-      <div class="special-name">Scarlet Wave <span>500 ₺</span></div>
-      <div class="special-desc">Strawberry hibiscus, mojito, lime syrup</div>
-    </div>
-    <div class="special-card" style="animation-delay:.32s; margin-top: 2px;">
-      <div class="special-name">Passion Bloom <span>500 ₺</span></div>
-      <div class="special-desc">Passion martini, berry hibiscus, vanille syrup</div>
-    </div>
-    <div class="special-card" style="animation-delay:.36s; margin-top: 2px;">
-      <div class="special-name">Brice Étoilée <span>500 ₺</span></div>
-      <div class="special-desc">White peach, lavanta syrup, lime syrup, fındık syrup</div>
-    </div>
+  <div class="menu-list" style="margin-top:4px;">
+    <div class="menu-item" style="animation-delay:.18s"><div class="item-icon">🌿</div><div class="item-info"><div class="item-name">Cool Lime</div></div><div class="item-price">250 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.21s"><div class="item-icon">🫐</div><div class="item-info"><div class="item-name">Cool Berry</div></div><div class="item-price">250 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.24s"><div class="item-icon">💜</div><div class="item-info"><div class="item-name">Lavanta Mix</div></div><div class="item-price">250 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.27s"><div class="item-icon">🫐</div><div class="item-info"><div class="item-name">Blue Logan</div></div><div class="item-price">280 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.30s"><div class="item-icon">🌿</div><div class="item-info"><div class="item-name">Miyu Fresh</div></div><div class="item-price">280 ₺</div></div>
   </div>
 </div>
-
 <div class="divider"></div>
 
 <!-- BİRALAR -->
 <div class="menu-section" data-cat="bira">
   <div class="section-header"><span class="section-title">Biralar</span><span class="section-count">18 çeşit</span></div>
   <div class="menu-list">
-    <div class="menu-item" style="animation-delay:.03s"><div class="item-icon">🍺</div><div class="item-info"><div class="item-name">Tuborg 33cl</div></div><div class="item-price">260 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.05s"><div class="item-icon">🍺</div><div class="item-info"><div class="item-name">Tuborg 50cl</div></div><div class="item-price">280 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.07s"><div class="item-icon">🍺</div><div class="item-info"><div class="item-name">Tuborg Filtresiz 50cl</div></div><div class="item-price">280 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.09s"><div class="item-icon">🍺</div><div class="item-info"><div class="item-name">Tuborg Ice 33cl</div></div><div class="item-price">260 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.11s"><div class="item-icon">🍺</div><div class="item-info"><div class="item-name">Tuborg Smooth 33cl</div></div><div class="item-price">260 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.13s"><div class="item-icon">🍺</div><div class="item-info"><div class="item-name">Carlsberg 33cl</div></div><div class="item-price">260 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.15s"><div class="item-icon">🍺</div><div class="item-info"><div class="item-name">Carlsberg 50cl</div></div><div class="item-price">280 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.17s"><div class="item-icon">🌙</div><div class="item-info"><div class="item-name">Carlsberg Luna 50cl</div></div><div class="item-price">290 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.19s"><div class="item-icon">☀️</div><div class="item-info"><div class="item-name">Sol 33cl</div></div><div class="item-price">330 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.21s"><div class="item-icon">🌵</div><div class="item-info"><div class="item-name">Desperados 33cl</div></div><div class="item-price">330 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.23s"><div class="item-icon">🍺</div><div class="item-info"><div class="item-name">Blanc 1664 33cl</div></div><div class="item-price">290 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.25s"><div class="item-icon">🖤</div><div class="item-info"><div class="item-name">Guinness Draught 44cl</div></div><div class="item-price">380 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.27s"><div class="item-icon">🍺</div><div class="item-info"><div class="item-name">Weihenstephan 33cl</div></div><div class="item-price">350 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.29s"><div class="item-icon">🍺</div><div class="item-info"><div class="item-name">Weihenstephan Vitus 33cl</div></div><div class="item-price">350 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.31s"><div class="item-icon">🍺</div><div class="item-info"><div class="item-name">Frederik Marzen 35cl</div></div><div class="item-price">330 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.33s"><div class="item-icon">🍺</div><div class="item-info"><div class="item-name">Frederik India Pale 35cl</div></div><div class="item-price">330 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.35s"><div class="item-icon">🍺</div><div class="item-info"><div class="item-name">Frederik Yakima IPA 35cl</div></div><div class="item-price">330 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.37s"><div class="item-icon">🍺</div><div class="item-info"><div class="item-name">Frederik Brawn Ale 35cl</div></div><div class="item-price">330 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.02s"><div class="item-icon">🍺</div><div class="item-info"><div class="item-name">Tuborg 33cl</div></div><div class="item-price">260 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.04s"><div class="item-icon">🍺</div><div class="item-info"><div class="item-name">Tuborg 50cl</div></div><div class="item-price">280 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.06s"><div class="item-icon">🍺</div><div class="item-info"><div class="item-name">Tuborg Filtresiz 50cl</div></div><div class="item-price">280 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.08s"><div class="item-icon">🍺</div><div class="item-info"><div class="item-name">Tuborg Ice 33cl</div></div><div class="item-price">260 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.10s"><div class="item-icon">🍺</div><div class="item-info"><div class="item-name">Tuborg Smooth 33cl</div></div><div class="item-price">260 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.12s"><div class="item-icon">🍺</div><div class="item-info"><div class="item-name">Carlsberg 33cl</div></div><div class="item-price">260 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.14s"><div class="item-icon">🍺</div><div class="item-info"><div class="item-name">Carlsberg 50cl</div></div><div class="item-price">280 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.16s"><div class="item-icon">🌙</div><div class="item-info"><div class="item-name">Carlsberg Luna 50cl</div></div><div class="item-price">290 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.18s"><div class="item-icon">☀️</div><div class="item-info"><div class="item-name">Sol 33cl</div></div><div class="item-price">330 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.20s"><div class="item-icon">🌵</div><div class="item-info"><div class="item-name">Desperados 33cl</div></div><div class="item-price">330 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.22s"><div class="item-icon">🍺</div><div class="item-info"><div class="item-name">Blanc 1664 33cl</div></div><div class="item-price">290 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.24s"><div class="item-icon">🖤</div><div class="item-info"><div class="item-name">Guinness Draught 44cl</div></div><div class="item-price">380 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.26s"><div class="item-icon">🍺</div><div class="item-info"><div class="item-name">Weihenstephan 33cl</div></div><div class="item-price">350 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.28s"><div class="item-icon">🍺</div><div class="item-info"><div class="item-name">Weihenstephan Vitus 33cl</div></div><div class="item-price">350 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.30s"><div class="item-icon">🍺</div><div class="item-info"><div class="item-name">Frederik Marzen 35cl</div></div><div class="item-price">330 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.32s"><div class="item-icon">🍺</div><div class="item-info"><div class="item-name">Frederik India Pale 35cl</div></div><div class="item-price">330 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.34s"><div class="item-icon">🍺</div><div class="item-info"><div class="item-name">Frederik Yakima IPA 35cl</div></div><div class="item-price">330 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.36s"><div class="item-icon">🍺</div><div class="item-info"><div class="item-name">Frederik Brawn Ale 35cl</div></div><div class="item-price">330 ₺</div></div>
   </div>
 </div>
-
 <div class="divider"></div>
 
 <!-- ŞARAPLAR -->
 <div class="menu-section" data-cat="sarap">
   <div class="section-header"><span class="section-title">Şaraplar</span><span class="section-count">Paşaeli</span></div>
+  <div class="price-header"><span class="price-col-label">Kadeh</span><span class="price-col-label">Şişe</span></div>
   <div class="menu-list">
-    <div class="special-card" style="animation-delay:.04s">
-      <div class="special-name">Paşaeli SYS — Beyaz <span>550 ₺</span></div>
-      <div class="special-desc">Sultanie, Yapıncak, Sıdalan</div>
-    </div>
-    <div class="special-card" style="animation-delay:.08s; margin-top: 2px;">
-      <div class="special-name">Paşaeli CSKS — Kırmızı <span>550 ₺</span></div>
-      <div class="special-desc">Cabernet Sauvignon, Karasakız</div>
-    </div>
-    <div class="special-card" style="animation-delay:.12s; margin-top: 2px;">
-      <div class="special-name">Paşaeli ÇK — Rosé <span>550 ₺</span></div>
-      <div class="special-desc">Çalkarası</div>
-    </div>
+    <div class="menu-item" style="animation-delay:.03s"><div class="item-icon">🤍</div><div class="item-info"><div class="item-name">Paşaeli SYS — Beyaz</div><div class="item-sub">Sultanie, Yapıncak, Sıdalan</div></div><div class="item-price-dual"><div class="price-sm">550 ₺</div><div class="price-lg">2.600 ₺</div></div></div>
+    <div class="menu-item" style="animation-delay:.06s"><div class="item-icon">🍷</div><div class="item-info"><div class="item-name">Paşaeli CSKS — Kırmızı</div><div class="item-sub">Cabernet Sauvignon, Karasakız</div></div><div class="item-price-dual"><div class="price-sm">550 ₺</div><div class="price-lg">2.600 ₺</div></div></div>
+    <div class="menu-item" style="animation-delay:.09s"><div class="item-icon">🌸</div><div class="item-info"><div class="item-name">Paşaeli ÇK — Rosé</div><div class="item-sub">Çalkarası</div></div><div class="item-price-dual"><div class="price-sm">550 ₺</div><div class="price-lg">2.600 ₺</div></div></div>
   </div>
 </div>
+<div class="divider"></div>
 
+<!-- ALKOLLER -->
+<div class="menu-section" data-cat="alkoller">
+  <div class="section-header"><span class="section-title">Alkoller</span></div>
+
+  <p class="alkol-sub-header">Viski</p>
+  <div class="alkol-wrap" style="animation-delay:.03s">
+    <table class="alkol-table">
+      <tr><th>Ürün</th><th>Single</th><th>Double</th><th>Şişe</th></tr>
+      <tr><td>Jameson</td><td>750 ₺</td><td>1.200 ₺</td><td>7.000 ₺</td></tr>
+      <tr><td>Chivas 12 Yrs</td><td>800 ₺</td><td>1.300 ₺</td><td>9.000 ₺</td></tr>
+      <tr><td>Chivas 18 Yrs</td><td colspan="2" style="text-align:center;color:var(--muted);font-size:11px;">Sadece şişe</td><td>16.000 ₺</td></tr>
+    </table>
+  </div>
+
+  <p class="alkol-sub-header">Tequila</p>
+  <div class="alkol-wrap" style="animation-delay:.06s">
+    <table class="alkol-table">
+      <tr><th>Ürün</th><th>Single</th><th>Şişe</th></tr>
+      <tr><td>Olmega Silver</td><td>750 ₺</td><td>8.000 ₺</td></tr>
+    </table>
+  </div>
+
+  <p class="alkol-sub-header">Vodka</p>
+  <div class="alkol-wrap" style="animation-delay:.09s">
+    <table class="alkol-table">
+      <tr><th>Ürün</th><th>Single</th><th>Şişe</th></tr>
+      <tr><td>Absolut Blue</td><td>750 ₺</td><td>7.000 ₺</td></tr>
+      <tr><td>Absolut Elx</td><td>1.000 ₺</td><td>10.000 ₺</td></tr>
+    </table>
+  </div>
+
+  <p class="alkol-sub-header">Gin</p>
+  <div class="alkol-wrap" style="animation-delay:.12s">
+    <table class="alkol-table">
+      <tr><th>Ürün</th><th>Single</th><th>Şişe</th></tr>
+      <tr><td>Beefeater</td><td>750 ₺</td><td>7.000 ₺</td></tr>
+      <tr><td>Monkey</td><td>1.000 ₺</td><td>10.000 ₺</td></tr>
+      <tr><td>Malf</td><td>800 ₺</td><td>9.000 ₺</td></tr>
+    </table>
+  </div>
+</div>
 <div class="divider"></div>
 
 <!-- MİLKSHAKE -->
 <div class="menu-section" data-cat="milkshake">
-  <div class="section-header"><span class="section-title">Milkshake</span><span class="section-count">9 çeşit · 280 ₺</span></div>
+  <div class="section-header"><span class="section-title">Milkshake</span><span class="section-count">280 ₺</span></div>
   <div class="menu-list">
-    <div class="menu-item" style="animation-delay:.04s"><div class="item-icon">🍫</div><div class="item-info"><div class="item-name">Çikolata</div></div><div class="item-price">280 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.07s"><div class="item-icon">🍓</div><div class="item-info"><div class="item-name">Çilek</div></div><div class="item-price">280 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.10s"><div class="item-icon">🍯</div><div class="item-info"><div class="item-name">Karamel</div></div><div class="item-price">280 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.13s"><div class="item-icon">🍪</div><div class="item-info"><div class="item-name">Oreo</div></div><div class="item-price">280 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.16s"><div class="item-icon">🤍</div><div class="item-info"><div class="item-name">Vanilya</div></div><div class="item-price">280 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.19s"><div class="item-icon">🍪</div><div class="item-info"><div class="item-name">Cookie</div></div><div class="item-price">280 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.22s"><div class="item-icon">🍌</div><div class="item-info"><div class="item-name">Muz</div></div><div class="item-price">280 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.25s"><div class="item-icon">🫐</div><div class="item-info"><div class="item-name">Frambuaz</div></div><div class="item-price">280 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.28s"><div class="item-icon">🥭</div><div class="item-info"><div class="item-name">Mango</div></div><div class="item-price">280 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.03s"><div class="item-icon">🍫</div><div class="item-info"><div class="item-name">Çikolata</div></div><div class="item-price">280 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.05s"><div class="item-icon">🍓</div><div class="item-info"><div class="item-name">Çilek</div></div><div class="item-price">280 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.07s"><div class="item-icon">🍯</div><div class="item-info"><div class="item-name">Karamel</div></div><div class="item-price">280 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.09s"><div class="item-icon">🍪</div><div class="item-info"><div class="item-name">Oreo</div></div><div class="item-price">280 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.11s"><div class="item-icon">🤍</div><div class="item-info"><div class="item-name">Vanilya</div></div><div class="item-price">280 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.13s"><div class="item-icon">🍪</div><div class="item-info"><div class="item-name">Cookie</div></div><div class="item-price">280 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.15s"><div class="item-icon">🍌</div><div class="item-info"><div class="item-name">Muz</div></div><div class="item-price">280 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.17s"><div class="item-icon">🫐</div><div class="item-info"><div class="item-name">Frambuaz</div></div><div class="item-price">280 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.19s"><div class="item-icon">🥭</div><div class="item-info"><div class="item-name">Mango</div></div><div class="item-price">280 ₺</div></div>
   </div>
 </div>
-
 <div class="divider"></div>
 
 <!-- FROZEN -->
 <div class="menu-section" data-cat="frozen">
-  <div class="section-header"><span class="section-title">Frozen</span><span class="section-count">11 çeşit · 280 ₺</span></div>
+  <div class="section-header"><span class="section-title">Frozen</span><span class="section-count">280 ₺</span></div>
   <div class="menu-list">
-    <div class="menu-item" style="animation-delay:.04s"><div class="item-icon">🥭</div><div class="item-info"><div class="item-name">Mango</div></div><div class="item-price">280 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.06s"><div class="item-icon">🫐</div><div class="item-info"><div class="item-name">Böğürtlen</div></div><div class="item-price">280 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.08s"><div class="item-icon">🥝</div><div class="item-info"><div class="item-name">Kivi</div></div><div class="item-price">280 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.10s"><div class="item-icon">🍑</div><div class="item-info"><div class="item-name">Şeftali</div></div><div class="item-price">280 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.12s"><div class="item-icon">🍉</div><div class="item-info"><div class="item-name">Karpuz</div></div><div class="item-price">280 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.14s"><div class="item-icon">🍍</div><div class="item-info"><div class="item-name">Ananas</div></div><div class="item-price">280 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.16s"><div class="item-icon">🌲</div><div class="item-info"><div class="item-name">Orman Meyvesi</div></div><div class="item-price">280 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.18s"><div class="item-icon">🍓</div><div class="item-info"><div class="item-name">Çilek</div></div><div class="item-price">280 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.20s"><div class="item-icon">🍈</div><div class="item-info"><div class="item-name">Kavun</div></div><div class="item-price">280 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.22s"><div class="item-icon">🍋</div><div class="item-info"><div class="item-name">Limon</div></div><div class="item-price">280 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.24s"><div class="item-icon">🍏</div><div class="item-info"><div class="item-name">Yeşil Elma</div></div><div class="item-price">280 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.02s"><div class="item-icon">🥭</div><div class="item-info"><div class="item-name">Mango</div></div><div class="item-price">280 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.04s"><div class="item-icon">🫐</div><div class="item-info"><div class="item-name">Böğürtlen</div></div><div class="item-price">280 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.06s"><div class="item-icon">🥝</div><div class="item-info"><div class="item-name">Kivi</div></div><div class="item-price">280 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.08s"><div class="item-icon">🍑</div><div class="item-info"><div class="item-name">Şeftali</div></div><div class="item-price">280 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.10s"><div class="item-icon">🍉</div><div class="item-info"><div class="item-name">Karpuz</div></div><div class="item-price">280 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.12s"><div class="item-icon">🍍</div><div class="item-info"><div class="item-name">Ananas</div></div><div class="item-price">280 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.14s"><div class="item-icon">🌲</div><div class="item-info"><div class="item-name">Orman Meyvesi</div></div><div class="item-price">280 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.16s"><div class="item-icon">🍓</div><div class="item-info"><div class="item-name">Çilek</div></div><div class="item-price">280 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.18s"><div class="item-icon">🍈</div><div class="item-info"><div class="item-name">Kavun</div></div><div class="item-price">280 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.20s"><div class="item-icon">🍋</div><div class="item-info"><div class="item-name">Limon</div></div><div class="item-price">280 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.22s"><div class="item-icon">🍏</div><div class="item-info"><div class="item-name">Yeşil Elma</div></div><div class="item-price">280 ₺</div></div>
   </div>
 </div>
-
 <div class="divider"></div>
 
 <!-- SOFT İÇECEKLER -->
 <div class="menu-section" data-cat="soft">
   <div class="section-header"><span class="section-title">Soft İçecekler</span></div>
   <div class="menu-list">
-    <div class="menu-item" style="animation-delay:.04s"><div class="item-icon">💧</div><div class="item-info"><div class="item-name">Su</div></div><div class="item-price">80 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.07s"><div class="item-icon">🫧</div><div class="item-info"><div class="item-name">Soda</div></div><div class="item-price">120 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.10s"><div class="item-icon">🍵</div><div class="item-info"><div class="item-name">Fuse Tea</div></div><div class="item-price">150 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.13s"><div class="item-icon">🍊</div><div class="item-info"><div class="item-name">Fanta</div></div><div class="item-price">150 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.16s"><div class="item-icon">🥤</div><div class="item-info"><div class="item-name">Cola</div></div><div class="item-price">150 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.19s"><div class="item-icon">🥤</div><div class="item-info"><div class="item-name">Cola Zero</div></div><div class="item-price">150 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.22s"><div class="item-icon">🍋</div><div class="item-info"><div class="item-name">Sprite</div></div><div class="item-price">150 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.25s"><div class="item-icon">⚡</div><div class="item-info"><div class="item-name">Red Bull</div></div><div class="item-price">200 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.02s"><div class="item-icon">💧</div><div class="item-info"><div class="item-name">Su</div></div><div class="item-price">80 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.04s"><div class="item-icon">🫧</div><div class="item-info"><div class="item-name">Soda</div></div><div class="item-price">120 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.06s"><div class="item-icon">🍵</div><div class="item-info"><div class="item-name">Çay</div></div><div class="item-price">90 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.08s"><div class="item-icon">🍵</div><div class="item-info"><div class="item-name">Double Çay</div></div><div class="item-price">120 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.10s"><div class="item-icon">🍋</div><div class="item-info"><div class="item-name">Limonata</div></div><div class="item-price">200 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.12s"><div class="item-icon">🍋</div><div class="item-info"><div class="item-name">Aromalı Limonata</div></div><div class="item-price">250 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.14s"><div class="item-icon">🫖</div><div class="item-info"><div class="item-name">Fusea Tea</div></div><div class="item-price">150 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.16s"><div class="item-icon">🍊</div><div class="item-info"><div class="item-name">Fanta</div></div><div class="item-price">150 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.18s"><div class="item-icon">🥤</div><div class="item-info"><div class="item-name">Cola</div></div><div class="item-price">150 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.20s"><div class="item-icon">🥤</div><div class="item-info"><div class="item-name">Cola Zero</div></div><div class="item-price">150 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.22s"><div class="item-icon">🥤</div><div class="item-info"><div class="item-name">Cola Light</div></div><div class="item-price">150 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.24s"><div class="item-icon">🍋</div><div class="item-info"><div class="item-name">Sprite</div></div><div class="item-price">150 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.26s"><div class="item-icon">⚡</div><div class="item-info"><div class="item-name">Red Bull</div></div><div class="item-price">200 ₺</div></div>
   </div>
 </div>
-
 <div class="divider"></div>
 
 <!-- ATIŞTIRMALIKLAR -->
 <div class="menu-section" data-cat="atistirmalik">
-  <div class="section-header"><span class="section-title">Atıştırmalıklar</span><span class="section-count">8 ürün</span></div>
+  <div class="section-header"><span class="section-title">Atıştırmalıklar</span></div>
   <div class="menu-list">
-    <div class="menu-item" style="animation-delay:.04s"><div class="item-icon">🍟</div><div class="item-info"><div class="item-name">Trüflü Parmesanlı Patates</div></div><div class="item-price">390 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.07s"><div class="item-icon">🧀</div><div class="item-info"><div class="item-name">Cheddar Soslu Patates</div></div><div class="item-price">380 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.10s"><div class="item-icon">🌶️</div><div class="item-info"><div class="item-name">Schimi Baharatlı Patates</div></div><div class="item-price">350 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.13s"><div class="item-icon">🍗</div><div class="item-info"><div class="item-name">Çıtır Tavuk</div></div><div class="item-price">480 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.16s"><div class="item-icon">🌭</div><div class="item-info"><div class="item-name">Sosis Tabağı</div></div><div class="item-price">650 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.19s"><div class="item-icon">🥟</div><div class="item-info"><div class="item-name">Çıtır Mantı</div></div><div class="item-price">650 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.22s"><div class="item-icon">🍺</div><div class="item-info"><div class="item-name">Myu Bira Tabağı</div></div><div class="item-price">950 ₺</div></div>
-    <div class="menu-item" style="animation-delay:.25s"><div class="item-icon">🥜</div><div class="item-info"><div class="item-name">Çerez</div></div><div class="item-price">160 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.03s"><div class="item-icon">🍟</div><div class="item-info"><div class="item-name">Trüflü Parmesanlı Patates</div></div><div class="item-price">390 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.06s"><div class="item-icon">🧀</div><div class="item-info"><div class="item-name">Cheddar Soslu Patates</div></div><div class="item-price">380 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.09s"><div class="item-icon">🌶️</div><div class="item-info"><div class="item-name">Schimi Baharatlı Patates</div></div><div class="item-price">350 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.12s"><div class="item-icon">🍗</div><div class="item-info"><div class="item-name">Çıtır Tavuk</div></div><div class="item-price">480 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.15s"><div class="item-icon">🌭</div><div class="item-info"><div class="item-name">Sosis Tabağı</div></div><div class="item-price">650 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.18s"><div class="item-icon">🥟</div><div class="item-info"><div class="item-name">Çıtır Mantı</div></div><div class="item-price">650 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.21s"><div class="item-icon">🍺</div><div class="item-info"><div class="item-name">Miyu Bira Tabağı</div></div><div class="item-price">950 ₺</div></div>
+    <div class="menu-item" style="animation-delay:.24s"><div class="item-icon">🥜</div><div class="item-info"><div class="item-name">Çerez</div></div><div class="item-price">160 ₺</div></div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<!-- TATLILAR -->
+<div class="menu-section" data-cat="tatlilar">
+  <div class="section-header"><span class="section-title">Tatlılar</span></div>
+  <div class="menu-list">
+    <div class="menu-item" style="animation-delay:.03s"><div class="item-icon">🍰</div><div class="item-info"><div class="item-name">Tiramisu</div><div class="item-sub">Ev yapımı</div></div><div class="item-price">450 ₺</div></div>
   </div>
 </div>
 
@@ -441,7 +361,7 @@ body { background: var(--bg); color: #fff; font-family: 'Syne', sans-serif; min-
     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
     miyucoffee.com
   </a>
-  <p>© 2026 Miyu Concept Coffee & Pub — İzmir</p>
+  <p>© 2026 Miyu Concept Coffee & Pub — Yenifoça</p>
 </div>
 
 <script src="menu.js" defer></script>

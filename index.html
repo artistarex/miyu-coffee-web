@@ -145,7 +145,26 @@ footer { padding:56px 10%; text-align:center; border-top:1px solid var(--border)
 .social-links a:hover { color:var(--accent); transform:translateY(-3px); }
 .footer-copy { font-size:9px; letter-spacing:4px; color:rgba(255,255,255,.15); text-transform:uppercase; }
 
-/* MOBİL */
+/* LOKASYONLAR */
+.lokasyon-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:20px; }
+.lokasyon-card { background:var(--card-bg); border-radius:24px; border:1px solid var(--border); overflow:hidden; transition:border-color .4s,transform .4s cubic-bezier(.23,1,.32,1); }
+.lokasyon-card:hover { border-color:rgba(255,255,255,.12); transform:translateY(-6px); }
+.lokasyon-img-wrap { position:relative; height:260px; overflow:hidden; }
+.lokasyon-img-wrap img { width:100%; height:100%; object-fit:cover; transition:transform .6s cubic-bezier(.23,1,.32,1); }
+.lokasyon-card:hover .lokasyon-img-wrap img { transform:scale(1.05); }
+.lokasyon-badge { position:absolute; top:16px; left:16px; background:rgba(6,6,6,.7); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,.1); border-radius:20px; padding:5px 14px; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.6); }
+.lokasyon-body { padding:28px 28px 32px; }
+.lokasyon-body h3 { font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:300; color:#fff; margin-bottom:12px; }
+.lokasyon-body p { font-size:13px; color:var(--muted); line-height:1.8; margin-bottom:20px; }
+.lokasyon-tags { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px; }
+.lokasyon-tags span { font-size:10px; letter-spacing:1px; padding:5px 12px; background:rgba(255,255,255,.04); border:1px solid var(--border); border-radius:20px; color:rgba(255,255,255,.45); }
+.lokasyon-btn { display:inline-flex; align-items:center; gap:8px; padding:12px 24px; border:1px solid rgba(255,255,255,.12); border-radius:30px; color:rgba(255,255,255,.7); text-decoration:none; font-size:10px; letter-spacing:2px; text-transform:uppercase; transition:all .3s; }
+.lokasyon-btn:hover { border-color:var(--accent); color:#fff; transform:translateX(4px); }
+
+@media (max-width:768px) {
+  .lokasyon-grid { grid-template-columns:1fr; }
+  .lokasyon-img-wrap { height:200px; }
+}
 @media (max-width:768px) {
   body { cursor:auto; }
   .cursor,.cursor-dot { display:none; }
@@ -185,6 +204,7 @@ footer { padding:56px 10%; text-align:center; border-top:1px solid var(--border)
   <div class="nav-center" id="navCenter">
     <ul class="nav-links" id="navLinks">
       <li><a href="#atmosfer">Atmosfer</a></li>
+      <li><a href="#lokasyonlar">Lokasyonlar</a></li>
       <li><a href="#menu">Menü</a></li>
       <li><a href="#iletisim">İletişim</a></li>
     </ul>
@@ -216,6 +236,90 @@ footer { padding:56px 10%; text-align:center; border-top:1px solid var(--border)
   </div>
   <div class="hero-counter" id="heroCounter">01 / 03</div>
   <div class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<!-- HİKAYE BÖLÜMÜ -->
+<section id="hikaye" style="background:var(--bg); padding:100px 10%; text-align:center;">
+  <span class="section-label" data-reveal style="display:block;text-align:center;">Hikayemiz</span>
+  <h2 class="section-title" data-reveal>Yenifoça'nın<br><em style="font-style:italic;font-family:'Cormorant Garamond',serif;">İlk Kahvecisi</em></h2>
+
+  <div data-reveal style="max-width:680px;margin:0 auto 64px;">
+    <p style="font-size:16px;font-family:'Cormorant Garamond',serif;font-weight:300;color:rgba(255,255,255,.75);line-height:1.9;letter-spacing:.3px;">
+      2019 yılında Yenifoça'da bir ilke imza attık — bu kıyının ilk specialty coffee deneyimini hayata geçirdik.
+      Altı yıl boyunca denizin sesiyle büyüyen Miyu, bugün iki ayrı lokasyonda, iki farklı atmosferde
+      misafirlerini ağırlamaya devam ediyor.
+    </p>
+  </div>
+
+  <!-- İstatistikler -->
+  <div data-reveal style="display:flex;justify-content:center;gap:60px;flex-wrap:wrap;">
+    <div style="text-align:center;">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:72px;font-weight:300;line-height:1;color:#fff;">6</div>
+      <div style="font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-top:8px;">Yıllık Deneyim</div>
+    </div>
+    <div style="width:1px;background:var(--border);"></div>
+    <div style="text-align:center;">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:72px;font-weight:300;line-height:1;color:#fff;">2</div>
+      <div style="font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-top:8px;">Lokasyon</div>
+    </div>
+    <div style="width:1px;background:var(--border);"></div>
+    <div style="text-align:center;">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:72px;font-weight:300;line-height:1;color:#fff;">#1</div>
+      <div style="font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-top:8px;">Yenifoça'da İlk</div>
+    </div>
+  </div>
+</section>
+
+<!-- LOKASYONLAR -->
+<section id="lokasyonlar" style="background:var(--bg2);">
+  <span class="section-label" data-reveal>Neredeyiz</span>
+  <h2 class="section-title" data-reveal>İki Lokasyon,<br><em style="font-style:italic;font-family:'Cormorant Garamond',serif;">İki Atmosfer</em></h2>
+
+  <div class="lokasyon-grid" data-reveal>
+
+    <!-- Lokasyon 1: Place Soleil -->
+    <div class="lokasyon-card">
+      <div class="lokasyon-img-wrap">
+        <img src="atm1.jpg" alt="Miyu Place Soleil" loading="lazy">
+        <div class="lokasyon-badge">Şube 1</div>
+      </div>
+      <div class="lokasyon-body">
+        <h3>Place Soleil</h3>
+        <p>Güneş batımını izlerken yanınızda bir Miyu imzalı kokteyl. Manzara ve huzurun buluşma noktası.</p>
+        <div class="lokasyon-tags">
+          <span>🌅 Gün Batımı Manzarası</span>
+          <span>🍸 Cocktail Bar</span>
+          <span>☕ Specialty Coffee</span>
+        </div>
+        <a href="https://maps.app.goo.gl/nbyb3S4YiqPPqeKTA" target="_blank" class="lokasyon-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Haritada Gör
+        </a>
+      </div>
+    </div>
+
+    <!-- Lokasyon 2: Merkez -->
+    <div class="lokasyon-card">
+      <div class="lokasyon-img-wrap">
+        <img src="atm5.jpg" alt="Miyu Merkez" loading="lazy">
+        <div class="lokasyon-badge">Şube 2</div>
+      </div>
+      <div class="lokasyon-body">
+        <h3>Miyu Coffee</h3>
+        <p>Yenifoça'nın tam kalbinde, denize sıfır. Sabah kahvesinden gece kokteyline kadar her anın adresi.</p>
+        <div class="lokasyon-tags">
+          <span>🌊 Denize Sıfır</span>
+          <span>🏙️ Merkez</span>
+          <span>☕ Specialty Coffee</span>
+        </div>
+        <a href="https://maps.app.goo.gl/Rp5ArkN5Ej91dGiA8" target="_blank" class="lokasyon-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Haritada Gör
+        </a>
+      </div>
+    </div>
+
+  </div>
 </section>
 
 <!-- ATMOSFERe -->
@@ -299,7 +403,7 @@ footer { padding:56px 10%; text-align:center; border-top:1px solid var(--border)
       <a href="menu.html" class="contact-button"><i class="fas fa-qrcode"></i><span>Dijital Menüyü Gör</span></a>
     </div>
     <div class="contact-map">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3111.850205784956!2d26.8330823!3d38.74419950000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14ba35d14fc886b7%3A0x5d770957b19f61a8!2sMiyu%20Concept%20Coffee!5e0!3m2!1str!2str!4v1779135012782!5m2!1str!2str" width="100%" height="100%" style="border:0;filter:grayscale(1) invert(.88);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3111.735349192683!2d26.8466385!3d38.746834899999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14ba3524d9854fcb%3A0x58b1bbd2e2628842!2sMiyu%20Pub%20%26%20Coffee!5e0!3m2!1str!2str!4v1782419167122!5m2!1str!2str" width="100%" height="100%" style="border:0;filter:grayscale(1) invert(.88);" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
     </div>
   </div>
 </section>
